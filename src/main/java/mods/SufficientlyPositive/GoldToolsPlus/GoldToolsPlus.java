@@ -42,6 +42,8 @@ import org.apache.logging.log4j.Logger;
 
 // Decide whether to name to white_gold instead of venerable_gold [ ]
 
+// Create smithing table recipes for the armour [x]
+
 // Somehow boost gold mining material to Stone level [ ]
 
 // How to mine the infuser [x]

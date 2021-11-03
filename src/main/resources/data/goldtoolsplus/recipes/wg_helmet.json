@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:golden_helmet"
+  },
+  "addition": {
+    "item": "goldtoolsplus:venerable_gold_ingot"
+  },
+  "result": {
+    "item": "goldtoolsplus:venerable_gold_helmet"
+  }
+}
