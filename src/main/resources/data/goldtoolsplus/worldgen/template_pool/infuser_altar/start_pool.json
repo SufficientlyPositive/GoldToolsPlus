@@ -1,11 +1,11 @@
 {
-  "name" : "goldtoolsplus:infuser-altar/start_pool",
+  "name" : "goldtoolsplus:infuser_altar/start_pool",
   "fallback" : "minecraft:empty",
   "elements" : [
     {
       "weight": 1,
       "element": {
-        "location": "goldtoolsplus:infuser-altar",
+        "location": "goldtoolsplus:infuser_altar",
         "processors": "minecraft:empty",
         "projection": "rigid",
         "element_type": "minecraft:single_pool_element"

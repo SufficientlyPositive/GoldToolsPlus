@@ -13,8 +13,8 @@
     "item" : "minecraft:gold_ingot"
   },
   "input5" : {
-    "item" : "goldtoolsplus:venerable-gold-shard"
+    "item" : "goldtoolsplus:venerable_gold_shard"
   },
-  "outputItem" : "goldtoolsplus:venerable-gold-ingot",
+  "outputItem" : "goldtoolsplus:venerable_gold_ingot",
   "outputAmount": 1
 }

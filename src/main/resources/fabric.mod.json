@@ -10,7 +10,6 @@
   ],
 
   "license": "MIT License",
-  "icon": "assets/goldtoolsplus/textures/block/venerable-gold-block.png",
 
   "environment": "*",
   "entrypoints": {

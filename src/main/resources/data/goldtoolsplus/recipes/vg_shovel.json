@@ -4,9 +4,9 @@
     "item": "minecraft:golden_shovel"
   },
   "addition": {
-    "item": "goldtoolsplus:venerable-gold-ingot"
+    "item": "goldtoolsplus:venerable_gold_ingot"
   },
   "result": {
-    "item": "goldtoolsplus:venerable-gold-shovel"
+    "item": "goldtoolsplus:venerable_gold_shovel"
   }
 }

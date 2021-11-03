@@ -22,9 +22,9 @@ import org.apache.logging.log4j.Logger;
 
 // Pre-release todo list
 
-// Before refactoring, create github repository of the mod [ ]
+// Before refactoring, create github repository of the mod [x]
 
-// Refactor code to follow standard: "_" instead of "-" for word separation [ ]
+// Refactor code to follow standard: "_" instead of "-" for word separation [x]
 // Refactor enchantment mixins to use ItemStack.addEnchantment [ ]
 // Refactor sub-packages so they make sense [ ]
 // Refactor lootpools so they make more sense, remove the "createpool" functions and just keep the pools static [ ]
@@ -39,6 +39,8 @@ import org.apache.logging.log4j.Logger;
 // -> reduce durability [x]
 
 // Reduce venerable gold shard droprate to ~1/5th of current [x]
+
+// Decide whether to name to white_gold instead of venerable_gold [ ]
 
 // Somehow boost gold mining material to Stone level [ ]
 

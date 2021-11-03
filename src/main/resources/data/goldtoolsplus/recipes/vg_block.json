@@ -7,10 +7,10 @@
   ],
   "key": {
     "i": {
-      "item": "goldtoolsplus:venerable-gold-ingot"
+      "item": "goldtoolsplus:venerable_gold_ingot"
     }
   },
   "result": {
-    "item": "goldtoolsplus:venerable-gold-block"
+    "item": "goldtoolsplus:venerable_gold_block"
   }
 }

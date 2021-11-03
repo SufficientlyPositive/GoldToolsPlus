@@ -17,7 +17,6 @@ public class VenerableGoldToolMaterial implements ToolMaterial {
         this.attackDamage = 1.0F + ToolMaterials.GOLD.getAttackDamage();
     }
 
-    // durability designed to be 3x gold tool's durability
     @Override
     public int getDurability() {
         return this.durability;

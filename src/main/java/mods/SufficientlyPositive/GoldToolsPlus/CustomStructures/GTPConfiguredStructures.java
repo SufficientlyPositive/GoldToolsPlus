@@ -25,7 +25,7 @@ public class GTPConfiguredStructures {
     public static void registerConfiguredStructures() {
         Registry<ConfiguredStructureFeature<?, ?>> registry = BuiltinRegistries.CONFIGURED_STRUCTURE_FEATURE;
 
-        Registry.register(registry, GoldToolsPlus.newID("configured_infuser-altar"), CONFIGURED_INFUSER_ALTAR);
+        Registry.register(registry, GoldToolsPlus.newID("configured_infuser_altar"), CONFIGURED_INFUSER_ALTAR);
         // additional configured structures would be registered here
     }
 }

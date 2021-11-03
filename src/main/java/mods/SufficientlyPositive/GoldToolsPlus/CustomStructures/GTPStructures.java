@@ -11,7 +11,7 @@ import net.minecraft.world.gen.feature.StructureFeature;
 
 public class GTPStructures {
 
-    public static final String INFUSER_ALTAR_NAME = "infuser-altar";
+    public static final String INFUSER_ALTAR_NAME = "infuser_altar";
     public static StructureFeature<DefaultFeatureConfig> INFUSER_ALTAR;
 
     static {

@@ -16,13 +16,11 @@ public class GTPStructureInit {
         GTPStructures.setupAndRegisterStructures();
         GTPConfiguredStructures.registerConfiguredStructures();
 
-        BiomeModifications.create(GoldToolsPlus.newID("infuser-altar_addition"))
+        BiomeModifications.create(GoldToolsPlus.newID("infuser_altar_addition"))
                 .add(
                         ModificationPhase.ADDITIONS,
                         BiomeSelectors.foundInTheNether().and(BiomeSelectors.excludeByKey(BiomeKeys.SOUL_SAND_VALLEY)),
-                        context -> {
-                            context.getGenerationSettings().addBuiltInStructure(GTPConfiguredStructures.CONFIGURED_INFUSER_ALTAR);
-                        });
+                        context -> context.getGenerationSettings().addBuiltInStructure(GTPConfiguredStructures.CONFIGURED_INFUSER_ALTAR));
     }
 
 }

@@ -94,7 +94,7 @@ public class InfuserAltarStructure extends StructureFeature<DefaultFeatureConfig
 
             StructurePoolFeatureConfig structureSettingsAndStartPool = new StructurePoolFeatureConfig(
                     () -> dynamicRegistryManager.get(Registry.STRUCTURE_POOL_KEY)
-                            .get(GoldToolsPlus.newID("infuser-altar/start_pool")),
+                            .get(GoldToolsPlus.newID("infuser_altar/start_pool")),
                     5);
 
             StructurePoolBasedGenerator.generate(
@@ -122,7 +122,7 @@ public class InfuserAltarStructure extends StructureFeature<DefaultFeatureConfig
 
             this.setBoundingBoxFromChildren();
 
-            GoldToolsPlus.log(Level.INFO, "Infuser Altar at: " +
+            GoldToolsPlus.log(Level.DEBUG, "Infuser Altar at: " +
                     this.children.get(0).getBoundingBox().getMinX() + " " +
                     this.children.get(0).getBoundingBox().getMinY() + " " +
                     this.children.get(0).getBoundingBox().getMinZ());

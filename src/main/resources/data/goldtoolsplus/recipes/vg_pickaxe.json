@@ -4,9 +4,9 @@
     "item": "minecraft:golden_pickaxe"
   },
   "addition": {
-    "item": "goldtoolsplus:venerable-gold-ingot"
+    "item": "goldtoolsplus:venerable_gold_ingot"
   },
   "result": {
-    "item": "goldtoolsplus:venerable-gold-pickaxe"
+    "item": "goldtoolsplus:venerable_gold_pickaxe"
   }
 }

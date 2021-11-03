@@ -44,7 +44,7 @@ public class VenerableGoldArmourMaterial implements ArmorMaterial {
 
     @Override
     public String getName() {
-        return "venerable-gold";
+        return "venerable_gold";
     }
 
     @Override

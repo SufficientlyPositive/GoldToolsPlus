@@ -58,24 +58,24 @@ public class GTPItemsInit {
 
 
     public static void init() {
-        registerBlock("venerable-gold-block", VENERABLE_GOLD_BLOCK);
+        registerBlock("venerable_gold_block", VENERABLE_GOLD_BLOCK);
         Registry.register(Registry.BLOCK, INFUSER_IDENTIFIER, INFUSER_BLOCK);
 
         // register all generic items
-        registerItem("venerable-gold-ingot", VENERABLE_GOLD_INGOT);
-        registerItem("venerable-gold-shard", VENERABLE_GOLD_SHARD);
-        registerItem("venerable-gold-block", VENERABLE_GOLD_BLOCK_ITEM);
+        registerItem("venerable_gold_ingot", VENERABLE_GOLD_INGOT);
+        registerItem("venerable_gold_shard", VENERABLE_GOLD_SHARD);
+        registerItem("venerable_gold_block", VENERABLE_GOLD_BLOCK_ITEM);
         registerItem("infuser", INFUSER_BLOCK_ITEM);
 
-        registerItem("venerable-gold-sword", VENERABLE_GOLD_SWORD);
-        registerItem("venerable-gold-shovel", VENERABLE_GOLD_SHOVEL);
-        registerItem("venerable-gold-pickaxe", VENERABLE_GOLD_PICKAXE);
-        registerItem("venerable-gold-axe", VENERABLE_GOLD_AXE);
-        registerItem("venerable-gold-hoe", VENERABLE_GOLD_HOE);
+        registerItem("venerable_gold_sword", VENERABLE_GOLD_SWORD);
+        registerItem("venerable_gold_shovel", VENERABLE_GOLD_SHOVEL);
+        registerItem("venerable_gold_pickaxe", VENERABLE_GOLD_PICKAXE);
+        registerItem("venerable_gold_axe", VENERABLE_GOLD_AXE);
+        registerItem("venerable_gold_hoe", VENERABLE_GOLD_HOE);
 
-        registerItem("venerable-gold-helmet", VENERABLE_GOLD_HELMET);
-        registerItem("venerable-gold-chestplate", VENERABLE_GOLD_CHESTPLATE);
-        registerItem("venerable-gold-leggings", VENERABLE_GOLD_LEGGINGS);
-        registerItem("venerable-gold-boots", VENERABLE_GOLD_BOOTS);
+        registerItem("venerable_gold_helmet", VENERABLE_GOLD_HELMET);
+        registerItem("venerable_gold_chestplate", VENERABLE_GOLD_CHESTPLATE);
+        registerItem("venerable_gold_leggings", VENERABLE_GOLD_LEGGINGS);
+        registerItem("venerable_gold_boots", VENERABLE_GOLD_BOOTS);
     }
 }
