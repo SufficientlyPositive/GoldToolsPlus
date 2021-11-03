@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "goldtoolsplus:venerable-gold-block"
+    }
+  ],
+  "result": {
+    "item": "goldtoolsplus:venerable-gold-ingot",
+    "count": 9
+  }
+}

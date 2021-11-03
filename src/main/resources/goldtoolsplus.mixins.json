@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "mods.SufficientlyPositive.GoldToolsPlus.mixin",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "AnvilScreenHandlerMixin",
+    "EnchantmentHelperMixin",
+    "EnchantRandomlyLootFunctionMixin",
+    "EnchantCommandMixin",
+    "SmithingRecipeMixin",
+    "PiglinBruteEntityMixin",
+    "NoiseChunkGeneratorMixin",
+    "StructuresConfigAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

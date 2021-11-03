@@ -1,0 +1,20 @@
+{
+  "block.goldtoolsplus.venerable-gold-block": "Block of Venerable Gold",
+  "block.goldtoolsplus.infuser": "Infuser",
+
+  "item.goldtoolsplus.venerable-gold-block": "Block of Venerable Gold",
+  "item.goldtoolsplus.venerable-gold-axe": "Venerable Gold Axe",
+  "item.goldtoolsplus.venerable-gold-hoe": "Venerable Gold Hoe",
+  "item.goldtoolsplus.venerable-gold-ingot": "Venerable Gold Ingot",
+  "item.goldtoolsplus.venerable-gold-shard": "Venerable Gold Shard",
+  "item.goldtoolsplus.venerable-gold-pickaxe": "Venerable Gold Pickaxe",
+  "item.goldtoolsplus.venerable-gold-shovel": "Venerable Gold Shovel",
+  "item.goldtoolsplus.venerable-gold-sword": "Venerable Gold Sword",
+  "item.goldtoolsplus.venerable-gold-helmet": "Venerable Gold Helmet",
+  "item.goldtoolsplus.venerable-gold-chestplate": "Venerable Gold Chestplate",
+  "item.goldtoolsplus.venerable-gold-leggings": "Venerable Gold Leggings",
+  "item.goldtoolsplus.venerable-gold-boots": "Venerable Gold Boots",
+
+  "container.GTPinfuser": "Infuser",
+  "itemGroup.goldtoolsplus.all": "GoldToolsPlus"
+}

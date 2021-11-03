@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:golden_axe"
+  },
+  "addition": {
+    "item": "goldtoolsplus:venerable-gold-ingot"
+  },
+  "result": {
+    "item": "goldtoolsplus:venerable-gold-axe"
+  }
+}

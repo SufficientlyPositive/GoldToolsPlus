@@ -1,0 +1,20 @@
+{
+  "type" : "goldtoolsplus:infuser_recipe",
+  "input1" : {
+    "item" : "minecraft:gilded_blackstone"
+  },
+  "input2" : {
+    "item" : "minecraft:gilded_blackstone"
+  },
+  "input3" : {
+    "item" : "minecraft:gold_ingot"
+  },
+  "input4" : {
+    "item" : "minecraft:gold_ingot"
+  },
+  "input5" : {
+    "item" : "goldtoolsplus:venerable-gold-shard"
+  },
+  "outputItem" : "goldtoolsplus:venerable-gold-ingot",
+  "outputAmount": 1
+}
