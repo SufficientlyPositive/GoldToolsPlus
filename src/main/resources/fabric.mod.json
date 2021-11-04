@@ -21,7 +21,7 @@
     ]
   },
   "mixins": [
-    "goldtoolsplus_monsters.mixins.json",
+    "goldtoolsplus_other.mixins.json",
     "goldtoolsplus_enchantments.mixins.json"
   ],
 

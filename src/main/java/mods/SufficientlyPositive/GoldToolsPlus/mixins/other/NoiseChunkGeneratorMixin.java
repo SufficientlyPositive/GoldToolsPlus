@@ -1,4 +1,4 @@
-package mods.SufficientlyPositive.GoldToolsPlus.mixins.monsters;
+package mods.SufficientlyPositive.GoldToolsPlus.mixins.other;
 
 import mods.SufficientlyPositive.GoldToolsPlus.game.structures.Structures;
 import net.minecraft.entity.SpawnGroup;
