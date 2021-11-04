@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(NoiseChunkGenerator.class)
-public class NoiseChunkGeneratorMixin {
+public abstract class NoiseChunkGeneratorMixin {
 
     @Inject(
             method = "getEntitySpawnList",

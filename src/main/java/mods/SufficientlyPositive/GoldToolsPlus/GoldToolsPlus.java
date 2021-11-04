@@ -22,43 +22,42 @@ import org.apache.logging.log4j.Logger;
 
 // Pre-release todo list
 
-// Comment everything [ ]
+// Javadoc comment everything [ ]
 
 // Before refactoring, create github repository of the mod [x]
-
 // Refactor code to follow standard: "_" instead of "-" for word separation [x]
 // Refactor enchantment mixins to use ItemStack.addEnchantment, doesn't actually work - kept as-is [x]
+// Reduce durability to 48 (1.5x gold) [x]
+// Reduce venerable gold shard droprate to ~1/5th of current [x]
+// Create smithing table recipes for the armour [x]
+// Check if Accessor mixin is needed or if it works fine as-is [x]
+// How to mine the infuser [x]
+// -> decide on tool level [x]
+//    - diamond [x]
+// Fix loot pools generating weirdly enchanted loot? [x]
+// -> Check in EnchantWithLevelsLootFunction [x] - seems not applicable but mixin for compatibility anyways (uses enchantmenthelper mixin) [x]
+// -> Check in SetEnchantmentsLootFunction [x]
+// -> debug using EnchantRandomlyLootFunctionMixin [x]
+// /setblock ~ ~2 ~ minecraft:chest{LootTable:"goldtoolsplus:chests/infuser_chest"}
+
+
 // Refactor sub-packages so they make sense [ ]
 // Refactor lootpools so they make more sense, remove the "createpool" functions and just keep the pools static [ ]
 // Refactor various helper functions into some form of helper function class (log and newID should not be here) [ ]
 // Refactor GTPEnchantmentBoost so 1 function can be used to decide how to boost a specific enchantment based on an ItemStack, Enchantment and level [ ]
-
-// Fix loot pools generating weirdly enchanted loot? [x]
-// -> Check in EnchantWithLevelsLootFunction [x] - seems not applicable but mixin for compatibility anyways
-// -> Check in SetEnchantmentsLootFunction [x] - seems not applicable but mixin for compatibility anyways
-// -> debug using EnchantRandomlyLootFunctionMixin [x]
-// /setblock ~ ~2 ~ minecraft:chest{LootTable:"goldtoolsplus:chests/infuser_chest"}
+//     v
+// actually refactor the whole thing, so that there is a masterlist map <Item, int> that is constructed from the EnchantmentBoost objects
+// probably initialise the map in EnchantmentBoostInit or something and refer to it from there, recall map.get returns null, so use
+// getOrDefault(Item, 0) when finding how much to boost an enchantment on an item.
 
 // Add some form of config file [ ]
 // -> Allow config file to take json objects matching GTPEnchantmentBoost [ ]
 // -> Throw errors if items listed are not registered/there [ ]
 // -> Add some checking for 0 or negative enchantment levels just in case [ ]
 
-// Reduce durability to 48 (1.5x gold) [x]
-
-// Reduce venerable gold shard droprate to ~1/5th of current [x]
-
 // Decide whether to name to white_gold instead of venerable_gold [ ]
 
-// Create smithing table recipes for the armour [x]
-
 // Somehow boost gold mining material to Stone level [ ]
-
-// Check if Accessor mixin is needed or if it works fine as-is [ ]
-
-// How to mine the infuser [x]
-// -> decide on tool level [x]
-//    - diamond [x]
 
 // Make the infuser structure part of the nether fortress instead [ ]
 // -> Check for framework mods to let you add to vanilla structures [ ]
