@@ -18,6 +18,6 @@ public abstract class PiglinBruteEntityMixin extends MobEntity {
     }
 
     public void initEquipment(LocalDifficulty difficult){
-        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ItemsInit.VENERABLE_GOLD_AXE));
+        this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ItemsInit.WHITE_GOLD_AXE));
     }
 }

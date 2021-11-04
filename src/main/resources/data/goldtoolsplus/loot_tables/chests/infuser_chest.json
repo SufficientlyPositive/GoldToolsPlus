@@ -15,7 +15,7 @@
               "add": false
             }
           ],
-          "name": "goldtoolsplus:venerable_gold_ingot"
+          "name": "goldtoolsplus:white_gold_ingot"
         },
         {
           "type": "minecraft:item",
@@ -27,7 +27,7 @@
               "add": false
             }
           ],
-          "name": "goldtoolsplus:venerable_gold_shard"
+          "name": "goldtoolsplus:white_gold_shard"
         },
         {
           "type": "minecraft:item",
@@ -46,7 +46,7 @@
               "function": "minecraft:enchant_randomly"
             }
           ],
-          "name": "goldtoolsplus:venerable_gold_sword"
+          "name": "goldtoolsplus:white_gold_sword"
         },
         {
           "type": "minecraft:item",
@@ -65,7 +65,7 @@
               "function": "minecraft:enchant_randomly"
             }
           ],
-          "name": "goldtoolsplus:venerable_gold_chestplate"
+          "name": "goldtoolsplus:white_gold_chestplate"
         },
         {
           "type": "minecraft:item",
@@ -84,7 +84,7 @@
               "function": "minecraft:enchant_randomly"
             }
           ],
-          "name": "goldtoolsplus:venerable_gold_helmet"
+          "name": "goldtoolsplus:white_gold_helmet"
         },
         {
           "type": "minecraft:item",
@@ -103,7 +103,7 @@
               "function": "minecraft:enchant_randomly"
             }
           ],
-          "name": "goldtoolsplus:venerable_gold_leggings"
+          "name": "goldtoolsplus:white_gold_leggings"
         },
         {
           "type": "minecraft:item",
@@ -122,32 +122,32 @@
               "function": "minecraft:enchant_randomly"
             }
           ],
-          "name": "goldtoolsplus:venerable_gold_boots"
+          "name": "goldtoolsplus:white_gold_boots"
         },
         {
           "type": "minecraft:item",
           "weight": 6,
-          "name": "goldtoolsplus:venerable_gold_sword"
+          "name": "goldtoolsplus:white_gold_sword"
         },
         {
           "type": "minecraft:item",
           "weight": 2,
-          "name": "goldtoolsplus:venerable_gold_chestplate"
+          "name": "goldtoolsplus:white_gold_chestplate"
         },
         {
           "type": "minecraft:item",
           "weight": 2,
-          "name": "goldtoolsplus:venerable_gold_helmet"
+          "name": "goldtoolsplus:white_gold_helmet"
         },
         {
           "type": "minecraft:item",
           "weight": 2,
-          "name": "goldtoolsplus:venerable_gold_leggings"
+          "name": "goldtoolsplus:white_gold_leggings"
         },
         {
           "type": "minecraft:item",
           "weight": 2,
-          "name": "goldtoolsplus:venerable_gold_boots"
+          "name": "goldtoolsplus:white_gold_boots"
         },
         {
           "type": "minecraft:item",

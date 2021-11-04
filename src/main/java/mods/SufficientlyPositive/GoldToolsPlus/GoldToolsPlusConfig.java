@@ -31,20 +31,20 @@ public class GoldToolsPlusConfig {
             }
     );
 
-    public static final EnchantmentBoost venerableGoldItems = new EnchantmentBoost(
+    public static final EnchantmentBoost whiteGoldItems = new EnchantmentBoost(
             2,
             new Item[] {
-                    ItemsInit.VENERABLE_GOLD_SWORD,
-                    ItemsInit.VENERABLE_GOLD_SHOVEL,
-                    ItemsInit.VENERABLE_GOLD_PICKAXE,
-                    ItemsInit.VENERABLE_GOLD_AXE,
-                    ItemsInit.VENERABLE_GOLD_HOE,
-                    ItemsInit.VENERABLE_GOLD_HELMET,
-                    ItemsInit.VENERABLE_GOLD_CHESTPLATE,
-                    ItemsInit.VENERABLE_GOLD_LEGGINGS,
-                    ItemsInit.VENERABLE_GOLD_BOOTS
+                    ItemsInit.WHITE_GOLD_SWORD,
+                    ItemsInit.WHITE_GOLD_SHOVEL,
+                    ItemsInit.WHITE_GOLD_PICKAXE,
+                    ItemsInit.WHITE_GOLD_AXE,
+                    ItemsInit.WHITE_GOLD_HOE,
+                    ItemsInit.WHITE_GOLD_HELMET,
+                    ItemsInit.WHITE_GOLD_CHESTPLATE,
+                    ItemsInit.WHITE_GOLD_LEGGINGS,
+                    ItemsInit.WHITE_GOLD_BOOTS
             }
     );
 
-    public static final EnchantmentBoost[] boostList = new EnchantmentBoost[]{goldItems, venerableGoldItems};
+    public static final EnchantmentBoost[] boostList = new EnchantmentBoost[]{goldItems, whiteGoldItems};
 }

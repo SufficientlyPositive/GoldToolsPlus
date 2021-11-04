@@ -7,9 +7,9 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 
-public class VenerableGoldArmourMaterial implements ArmorMaterial {
+public class WhiteGoldArmourMaterial implements ArmorMaterial {
 
-    public static final VenerableGoldArmourMaterial INSTANCE = new VenerableGoldArmourMaterial();
+    public static final WhiteGoldArmourMaterial INSTANCE = new WhiteGoldArmourMaterial();
 
     private static final int[] BASE_DURABILITY = new int[]{13, 15, 16, 11};
     private static final int[] PROTECTION_VALUES = new int[] {2, 4, 5, 2};
@@ -39,12 +39,12 @@ public class VenerableGoldArmourMaterial implements ArmorMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(ItemsInit.VENERABLE_GOLD_INGOT);
+        return Ingredient.ofItems(ItemsInit.WHITE_GOLD_INGOT);
     }
 
     @Override
     public String getName() {
-        return "venerable_gold";
+        return "white_gold";
     }
 
     @Override

@@ -4,9 +4,9 @@
     "item": "minecraft:golden_axe"
   },
   "addition": {
-    "item": "goldtoolsplus:venerable_gold_ingot"
+    "item": "goldtoolsplus:white_gold_ingot"
   },
   "result": {
-    "item": "goldtoolsplus:venerable_gold_axe"
+    "item": "goldtoolsplus:white_gold_axe"
   }
 }

@@ -5,14 +5,14 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.item.ToolMaterials;
 import net.minecraft.recipe.Ingredient;
 
-public class VenerableGoldToolMaterial implements ToolMaterial {
+public class WhiteGoldToolMaterial implements ToolMaterial {
 
-    public static final VenerableGoldToolMaterial INSTANCE = new VenerableGoldToolMaterial();
+    public static final WhiteGoldToolMaterial INSTANCE = new WhiteGoldToolMaterial();
 
     private final int durability;
     private final float attackDamage;
 
-    VenerableGoldToolMaterial() {
+    WhiteGoldToolMaterial() {
         this.durability = (int) (1.5F * ToolMaterials.GOLD.getDurability());
         this.attackDamage = 1.0F + ToolMaterials.GOLD.getAttackDamage();
     }
@@ -44,6 +44,6 @@ public class VenerableGoldToolMaterial implements ToolMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(ItemsInit.VENERABLE_GOLD_INGOT);
+        return Ingredient.ofItems(ItemsInit.WHITE_GOLD_INGOT);
     }
 }

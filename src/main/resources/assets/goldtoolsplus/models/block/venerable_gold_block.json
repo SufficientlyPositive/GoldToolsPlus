@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "goldtoolsplus:block/venerable_gold_block"
-  }
-}

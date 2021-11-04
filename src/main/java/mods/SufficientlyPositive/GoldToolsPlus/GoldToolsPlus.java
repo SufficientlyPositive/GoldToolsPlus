@@ -22,7 +22,7 @@ import org.apache.logging.log4j.Logger;
 // Refactor code to follow standard: "_" instead of "-" for word separation [x]
 // Refactor enchantment mixins to use ItemStack.addEnchantment, doesn't actually work - kept as-is [x]
 // Reduce durability to 48 (1.5x gold) [x]
-// Reduce venerable gold shard droprate to ~1/5th of current [x]
+// Reduce white gold shard droprate to ~1/5th of current [x]
 // Create smithing table recipes for the armour [x]
 // Check if Accessor mixin is needed or if it works fine as-is [x]
 // How to mine the infuser [x]
@@ -41,10 +41,12 @@ import org.apache.logging.log4j.Logger;
 // actually refactor the whole thing, so that there is a masterlist map <Item, int> that is constructed from the EnchantmentBoost objects
 // probably initialise the map in EnchantmentBoostInit or something and refer to it from there, recall map.get returns null, so use
 // getOrDefault(Item, 0) when finding how much to boost an enchantment on an item.
+// Decide whether to name to white_gold instead of white_gold [x]
+// Use white_gold [x]
+// -> Refactor to rename everything [x]
+// Refactor everything to use "newID" instead of "new Identifier" [x]
 
 
-
-// Refactor everything to use "newID" instead of "new Identifier" [ ]
 
 // Add some form of config file [ ]
 // -> Allow config file to take json objects matching EnchantmentBoost [ ]
@@ -54,16 +56,13 @@ import org.apache.logging.log4j.Logger;
 // EnchantCommand Error spews incorrectly (e.g. enchant protection 7 on chestplate throws "6 > 4 so no enchant sry"
 // fix [ ]
 
-// Decide whether to name to white_gold instead of venerable_gold [ ]
-
-// Make piglins not agro at venerable gold armour [ ]
+// Make piglins not agro at white gold armour [ ]
 
 // Somehow boost gold mining material to Stone level [ ]
 
 // Make the infuser structure part of the nether fortress instead [ ]
-// -> Check for framework mods to let you add to vanilla structures [ ]
-//    - yes [ ]
-//    - no [ ]
+// -> Check for framework mods to let you add to vanilla structures [x]
+//    - no [x]
 // -> Change loot table of chest to more closely resemble nether fortress loot [ ]
 //    - keep gilded blackstone in the chest loot [ ]
 // -> If not automatic, make the room spawn wither skeletons and zombified piglins [ ]
@@ -79,7 +78,7 @@ import org.apache.logging.log4j.Logger;
 
 
 // Finally:
-// Make sure FabricMod.json and everything is correct, should be V1.0
+// Make sure FabricMod.json and everything is correct, should be V1.0 [ ]
 
 public class GoldToolsPlus implements ModInitializer {
 
@@ -89,7 +88,7 @@ public class GoldToolsPlus implements ModInitializer {
 
     public static final ItemGroup GTP_ITEM_GROUP = FabricItemGroupBuilder
             .create(GoldToolsPlusHelperFunctions.newID("all"))
-            .icon(() -> new ItemStack(ItemsInit.VENERABLE_GOLD_PICKAXE))
+            .icon(() -> new ItemStack(ItemsInit.WHITE_GOLD_PICKAXE))
             .build();
 
     @Override

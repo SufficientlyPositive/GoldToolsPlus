@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "goldtoolsplus:venerable_gold_block",
+    "goldtoolsplus:white_gold_block",
     "goldtoolsplus:infuser"
   ]
 }

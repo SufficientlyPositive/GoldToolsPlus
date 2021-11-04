@@ -4,9 +4,9 @@
     "item": "minecraft:golden_helmet"
   },
   "addition": {
-    "item": "goldtoolsplus:venerable_gold_ingot"
+    "item": "goldtoolsplus:white_gold_ingot"
   },
   "result": {
-    "item": "goldtoolsplus:venerable_gold_helmet"
+    "item": "goldtoolsplus:white_gold_helmet"
   }
 }

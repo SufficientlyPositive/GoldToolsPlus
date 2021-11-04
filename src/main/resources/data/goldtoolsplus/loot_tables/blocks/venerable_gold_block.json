@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "goldtoolsplus:venerable_gold_block"
+          "name": "goldtoolsplus:white_gold_block"
         }
       ],
       "conditions": [

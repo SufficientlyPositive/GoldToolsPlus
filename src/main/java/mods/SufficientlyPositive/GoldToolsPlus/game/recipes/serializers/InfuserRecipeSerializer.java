@@ -3,6 +3,7 @@ package mods.SufficientlyPositive.GoldToolsPlus.game.recipes.serializers;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
+import mods.SufficientlyPositive.GoldToolsPlus.functions.GoldToolsPlusHelperFunctions;
 import mods.SufficientlyPositive.GoldToolsPlus.game.recipes.recipes.InfuserRecipe;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,7 @@ import net.minecraft.util.registry.Registry;
 public class InfuserRecipeSerializer implements RecipeSerializer<InfuserRecipe> {
     private InfuserRecipeSerializer() {}
     public static final InfuserRecipeSerializer INSTANCE = new InfuserRecipeSerializer();
-    public static final Identifier ID = new Identifier("goldtoolsplus:infuser_recipe");
+    public static final Identifier ID = GoldToolsPlusHelperFunctions.newID("infuser_recipe");
 
     @Override
     public InfuserRecipe read(Identifier id, JsonObject json) {

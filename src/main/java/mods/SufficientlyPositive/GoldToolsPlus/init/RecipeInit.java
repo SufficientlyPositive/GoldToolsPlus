@@ -6,7 +6,6 @@ import mods.SufficientlyPositive.GoldToolsPlus.game.recipes.serializers.InfuserR
 import mods.SufficientlyPositive.GoldToolsPlus.GoldToolsPlus;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.Level;
 
@@ -15,7 +14,7 @@ public class RecipeInit {
     public static final RecipeSerializer<InfuserRecipe> INFUSER_RECIPE_SERIALIZER;
 
     static {
-        INFUSER_RECIPE_TYPE = Registry.register(Registry.RECIPE_TYPE, new Identifier(GoldToolsPlus.MOD_ID, InfuserRecipe.Type.ID), InfuserRecipe.Type.INSTANCE);
+        INFUSER_RECIPE_TYPE = Registry.register(Registry.RECIPE_TYPE, GoldToolsPlusHelperFunctions.newID(InfuserRecipe.Type.ID), InfuserRecipe.Type.INSTANCE);
         INFUSER_RECIPE_SERIALIZER = Registry.register(Registry.RECIPE_SERIALIZER, InfuserRecipeSerializer.ID, InfuserRecipeSerializer.INSTANCE);
     }
 
