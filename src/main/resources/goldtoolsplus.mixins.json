@@ -10,8 +10,7 @@
     "EnchantCommandMixin",
     "SmithingRecipeMixin",
     "PiglinBruteEntityMixin",
-    "NoiseChunkGeneratorMixin",
-    "StructuresConfigAccessor"
+    "NoiseChunkGeneratorMixin"
   ],
   "injectors": {
     "defaultRequire": 1

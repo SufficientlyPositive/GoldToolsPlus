@@ -22,13 +22,22 @@ import org.apache.logging.log4j.Logger;
 
 // Pre-release todo list
 
+// Comment everything [ ]
+
 // Before refactoring, create github repository of the mod [x]
 
 // Refactor code to follow standard: "_" instead of "-" for word separation [x]
-// Refactor enchantment mixins to use ItemStack.addEnchantment [ ]
+// Refactor enchantment mixins to use ItemStack.addEnchantment, doesn't actually work - kept as-is [x]
 // Refactor sub-packages so they make sense [ ]
 // Refactor lootpools so they make more sense, remove the "createpool" functions and just keep the pools static [ ]
 // Refactor various helper functions into some form of helper function class (log and newID should not be here) [ ]
+// Refactor GTPEnchantmentBoost so 1 function can be used to decide how to boost a specific enchantment based on an ItemStack, Enchantment and level [ ]
+
+// Fix loot pools generating weirdly enchanted loot? [x]
+// -> Check in EnchantWithLevelsLootFunction [x] - seems not applicable but mixin for compatibility anyways
+// -> Check in SetEnchantmentsLootFunction [x] - seems not applicable but mixin for compatibility anyways
+// -> debug using EnchantRandomlyLootFunctionMixin [x]
+// /setblock ~ ~2 ~ minecraft:chest{LootTable:"goldtoolsplus:chests/infuser_chest"}
 
 // Add some form of config file [ ]
 // -> Allow config file to take json objects matching GTPEnchantmentBoost [ ]
@@ -36,7 +45,6 @@ import org.apache.logging.log4j.Logger;
 // -> Add some checking for 0 or negative enchantment levels just in case [ ]
 
 // Reduce durability to 48 (1.5x gold) [x]
-// -> reduce durability [x]
 
 // Reduce venerable gold shard droprate to ~1/5th of current [x]
 
@@ -45,6 +53,8 @@ import org.apache.logging.log4j.Logger;
 // Create smithing table recipes for the armour [x]
 
 // Somehow boost gold mining material to Stone level [ ]
+
+// Check if Accessor mixin is needed or if it works fine as-is [ ]
 
 // How to mine the infuser [x]
 // -> decide on tool level [x]
@@ -66,6 +76,10 @@ import org.apache.logging.log4j.Logger;
 //    - not possible [ ]
 //    - possible [ ]
 //      - change the screen whenever a correct recipe item is inserted into a specific slot [ ]
+
+
+// Finally:
+// Make sure FabricMod.json and everything is correct, should be V1.0
 
 public class GoldToolsPlus implements ModInitializer {
 
