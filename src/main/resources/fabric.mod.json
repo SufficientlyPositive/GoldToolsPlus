@@ -17,11 +17,12 @@
       "mods.SufficientlyPositive.GoldToolsPlus.GoldToolsPlus"
     ],
     "client": [
-      "mods.SufficientlyPositive.GoldToolsPlus.Client.GoldToolsPlusClient"
+      "mods.SufficientlyPositive.GoldToolsPlus.client.GoldToolsPlusClient"
     ]
   },
   "mixins": [
-    "goldtoolsplus.mixins.json"
+    "goldtoolsplus_monsters.mixins.json",
+    "goldtoolsplus_enchantments.mixins.json"
   ],
 
   "depends": {

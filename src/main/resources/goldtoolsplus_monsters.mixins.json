@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "mods.SufficientlyPositive.GoldToolsPlus.mixins.monsters",
+  "compatibilityLevel": "JAVA_16",
+  "mixins": [
+    "PiglinBruteEntityMixin",
+    "NoiseChunkGeneratorMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

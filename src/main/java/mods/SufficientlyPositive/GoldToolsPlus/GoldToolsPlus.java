@@ -1,21 +1,18 @@
 package mods.SufficientlyPositive.GoldToolsPlus;
 
-import mods.SufficientlyPositive.GoldToolsPlus.LootTableClasses.GTPLootTableFunctions;
-import mods.SufficientlyPositive.GoldToolsPlus.LootTableClasses.GTPLootTablePools;
-import mods.SufficientlyPositive.GoldToolsPlus.LootTableClasses.GTPLootTableConstants;
-import mods.SufficientlyPositive.GoldToolsPlus.init.GTPInfuserInit;
-import mods.SufficientlyPositive.GoldToolsPlus.init.GTPItemsInit;
-import mods.SufficientlyPositive.GoldToolsPlus.init.GTPStructureInit;
+import mods.SufficientlyPositive.GoldToolsPlus.functions.GoldToolsPlusHelperFunctions;
+import mods.SufficientlyPositive.GoldToolsPlus.game.loottables.LootTablePools;
+import mods.SufficientlyPositive.GoldToolsPlus.game.loottables.LootTableConstants;
+import mods.SufficientlyPositive.GoldToolsPlus.init.ItemsInit;
+import mods.SufficientlyPositive.GoldToolsPlus.init.ScreenHandlerInit;
+import mods.SufficientlyPositive.GoldToolsPlus.init.StructureInit;
+import mods.SufficientlyPositive.GoldToolsPlus.init.RecipeInit;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.LootTables;
-import net.minecraft.loot.provider.number.BinomialLootNumberProvider;
-import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,23 +36,25 @@ import org.apache.logging.log4j.Logger;
 // -> Check in SetEnchantmentsLootFunction [x]
 // -> debug using EnchantRandomlyLootFunctionMixin [x]
 // /setblock ~ ~2 ~ minecraft:chest{LootTable:"goldtoolsplus:chests/infuser_chest"}
+// Refactor sub-packages so they make sense [x]
+// Refactor lootpools so they make more sense [x]
+// Refactor various helper functions into some form of helper function class (log and newID should not be here) [x]
 
-
-// Refactor sub-packages so they make sense [ ]
-// Refactor lootpools so they make more sense, remove the "createpool" functions and just keep the pools static [ ]
-// Refactor various helper functions into some form of helper function class (log and newID should not be here) [ ]
-// Refactor GTPEnchantmentBoost so 1 function can be used to decide how to boost a specific enchantment based on an ItemStack, Enchantment and level [ ]
+// Refactor EnchantmentBoost so 1 function can be used to decide how to boost a specific enchantment based on an ItemStack, Enchantment and level [ ]
 //     v
 // actually refactor the whole thing, so that there is a masterlist map <Item, int> that is constructed from the EnchantmentBoost objects
 // probably initialise the map in EnchantmentBoostInit or something and refer to it from there, recall map.get returns null, so use
 // getOrDefault(Item, 0) when finding how much to boost an enchantment on an item.
+// Refactor everything to use "newID" instead of "new Identifier" [ ]
 
 // Add some form of config file [ ]
-// -> Allow config file to take json objects matching GTPEnchantmentBoost [ ]
+// -> Allow config file to take json objects matching EnchantmentBoost [ ]
 // -> Throw errors if items listed are not registered/there [ ]
 // -> Add some checking for 0 or negative enchantment levels just in case [ ]
 
 // Decide whether to name to white_gold instead of venerable_gold [ ]
+
+// Make piglins not agro at venerable gold armour
 
 // Somehow boost gold mining material to Stone level [ ]
 
@@ -87,109 +86,65 @@ public class GoldToolsPlus implements ModInitializer {
     public static final Logger LOGGER = LogManager.getLogger("GoldToolsPlus");
 
     public static final ItemGroup GTP_ITEM_GROUP = FabricItemGroupBuilder
-            .create(newID("all"))
-            .icon(() -> new ItemStack(GTPItemsInit.VENERABLE_GOLD_PICKAXE))
+            .create(GoldToolsPlusHelperFunctions.newID("all"))
+            .icon(() -> new ItemStack(ItemsInit.VENERABLE_GOLD_PICKAXE))
             .build();
 
     @Override
     public void onInitialize() {
 
-        GTPItemsInit.init();
-        log(Level.INFO, "Items registered");
+        ItemsInit.init();
+        GoldToolsPlusHelperFunctions.log(Level.INFO, "Items registered");
 
-        GTPStructureInit.init();
-        log(Level.INFO, "Structures registered");
-
-        GTPInfuserInit.init();
-        log(Level.INFO, "Infuser recipes/screen registered");
+        StructureInit.init();
+        RecipeInit.init();
+        ScreenHandlerInit.init();
 
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, table, setter) -> {
 
-            if (GTPLootTableConstants.PIGLIN_LOOT_TABLE_ID.equals(id)) {
-                table.pool(GTPLootTableFunctions.createMobItemPool(
-                        ConstantLootNumberProvider.create(1.0F),
-                        BinomialLootNumberProvider.create(1, 0.01F),
-                        GTPItemsInit.VENERABLE_GOLD_SHARD
-                ));
+            if (LootTableConstants.PIGLIN_LOOT_TABLE_ID.equals(id)) {
+                table.pool(LootTablePools.PIGLIN_LOOT_ADDITIONAL);
             }
 
-            if (GTPLootTableConstants.PIGLIN_BRUTE_LOOT_TABLE_ID.equals(id)) {
-                table.pool(GTPLootTableFunctions.createMobItemPool(
-                        ConstantLootNumberProvider.create(1.0F),
-                        BinomialLootNumberProvider.create(1, 0.75F),
-                        GTPItemsInit.VENERABLE_GOLD_SHARD
-                ));
+            if (LootTableConstants.PIGLIN_BRUTE_LOOT_TABLE_ID.equals(id)) {
+                table.pool(LootTablePools.PIGLIN_BRUTE_LOOT_ADDITIONAL);
             }
 
-            if (GTPLootTableConstants.NETHER_GOLD_ORE_LOOT_TABLE_ID.equals(id)) {
-                table.pool(GTPLootTablePools.NETHER_GOLD_ORE_ADDITIONAL);
+            if (LootTableConstants.NETHER_GOLD_ORE_LOOT_TABLE_ID.equals(id)) {
+                table.pool(LootTablePools.NETHER_GOLD_ORE_ADDITIONAL);
             }
 
             if (LootTables.RUINED_PORTAL_CHEST.equals(id)) {
-                table.pool(GTPLootTableFunctions.createItemPool(
-                        BinomialLootNumberProvider.create(2, 0.5F),
-                        BinomialLootNumberProvider.create(1, 0.05F),
-                        GTPItemsInit.VENERABLE_GOLD_SHARD));
+                table.pool(LootTablePools.RUINED_PORTAL_SHARDS);
             }
 
             if (LootTables.BASTION_BRIDGE_CHEST.equals(id)) {
-                table.pool(GTPLootTablePools.BASTION_BRIDGE_CHESTS_TOOLS);
-                table.pool(GTPLootTableFunctions.createItemPool(
-                        UniformLootNumberProvider.create(0, 2),
-                        BinomialLootNumberProvider.create(2, 0.2F),
-                        GTPItemsInit.VENERABLE_GOLD_SHARD));
+                table.pool(LootTablePools.BASTION_BRIDGE_TOOLS);
+                table.pool(LootTablePools.BASTION_BRIDGE_SHARDS);
             }
 
             if (LootTables.BASTION_HOGLIN_STABLE_CHEST.equals(id)) {
-                table.pool(GTPLootTableFunctions.createItemPool(
-                        UniformLootNumberProvider.create(0, 1),
-                        BinomialLootNumberProvider.create(2, 0.2F),
-                        GTPItemsInit.VENERABLE_GOLD_SHARD));
+                table.pool(LootTablePools.BASTION_STABLE_SHARDS);
+                table.pool(LootTablePools.BASTION_OTHER_TOOLS);
             }
 
             if (LootTables.BASTION_OTHER_CHEST.equals(id)) {
-                table.pool(GTPLootTablePools.BASTION_OTHER_CHESTS_TOOLS);
-                table.pool(GTPLootTableFunctions.createItemPool(
-                        UniformLootNumberProvider.create(1, 3),
-                        BinomialLootNumberProvider.create(5, 0.2F),
-                        GTPItemsInit.VENERABLE_GOLD_SHARD));
+                table.pool(LootTablePools.BASTION_OTHER_TOOLS);
+                table.pool(LootTablePools.BASTION_OTHER_SHARDS);
             }
 
             if (LootTables.BASTION_TREASURE_CHEST.equals(id)) {
-                table.pool(GTPLootTablePools.BASTION_TREASURE_CHESTS_TOOLS);
-                table.pool(GTPLootTableFunctions.createItemPool(
-                        UniformLootNumberProvider.create(1, 3),
-                        BinomialLootNumberProvider.create(3, 0.3F),
-                        GTPItemsInit.VENERABLE_GOLD_SHARD));
-                table.pool(GTPLootTableFunctions.createItemPool(
-                        ConstantLootNumberProvider.create(1.0F),
-                        BinomialLootNumberProvider.create(2, 0.2F),
-                        GTPItemsInit.VENERABLE_GOLD_INGOT));
+                table.pool(LootTablePools.BASTION_TREASURE_TOOLS);
+                table.pool(LootTablePools.BASTION_TREASURE_SHARDS);
+                table.pool(LootTablePools.BASTION_TREASURE_INGOTS);
             }
 
             if (LootTables.END_CITY_TREASURE_CHEST.equals(id)) {
-                table.pool(GTPLootTablePools.END_CITY_CHESTS_TOOLS);
-                table.pool(GTPLootTableFunctions.createItemPool(
-                    BinomialLootNumberProvider.create(2, 0.1F),
-                    BinomialLootNumberProvider.create(6, 0.7F),
-                    GTPItemsInit.VENERABLE_GOLD_INGOT));
+                table.pool(LootTablePools.END_CITY_TOOLS);
+                table.pool(LootTablePools.END_CITY_INGOTS);
             }
         });
-        log(Level.INFO, "Loot tables changed!");
-        log(Level.INFO, "Finished initialisation!");
-    }
-
-    public static void log(Level level, String message){
-        LOGGER.log(level, "["+MOD_NAME+"] " + message);
-    }
-
-    /**
-     * returns a new identifier registered under the mod id
-     *
-     * @param path replaces the path variable in the identifier constructor
-     * @return a new identifier tied to GoldToolsPlus
-     */
-    public static Identifier newID(String path) {
-        return new Identifier(MOD_ID, path);
+        GoldToolsPlusHelperFunctions.log(Level.INFO, "Loot tables changed!");
+        GoldToolsPlusHelperFunctions.log(Level.INFO, "Finished initialisation!");
     }
 }
