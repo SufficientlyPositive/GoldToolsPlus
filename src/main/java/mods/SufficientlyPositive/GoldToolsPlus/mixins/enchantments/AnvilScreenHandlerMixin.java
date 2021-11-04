@@ -1,6 +1,8 @@
 package mods.SufficientlyPositive.GoldToolsPlus.mixins.enchantments;
 
 import mods.SufficientlyPositive.GoldToolsPlus.GoldToolsPlusConfig;
+import mods.SufficientlyPositive.GoldToolsPlus.functions.EnchantmentBoostFunctions;
+import mods.SufficientlyPositive.GoldToolsPlus.init.EnchantmentBoostInit;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
@@ -51,16 +53,14 @@ public abstract class AnvilScreenHandlerMixin {
             locals = LocalCapture.CAPTURE_FAILSOFT
     )
     private void combineEnchants(CallbackInfo ci, ItemStack itemStack, int i, int j, int k, ItemStack itemStack2, ItemStack itemStack3, Map<Enchantment, Integer> map, boolean bl, Map<Enchantment, Integer> map2, boolean bl2, boolean bl3, Iterator var12, Enchantment enchantment, int u) {
-        if(GoldToolsPlusConfig.enchantmentBoostable(enchantment)) {
-            int valueOnItem = nullHandler(EnchantmentHelper.get(itemStack2).get(enchantment));
-            int valueOnItem2 = nullHandler(EnchantmentHelper.get(itemStack3).get(enchantment));
+        int valueOnItem = nullHandler(EnchantmentHelper.get(itemStack2).get(enchantment));
+        int valueOnItem2 = nullHandler(EnchantmentHelper.get(itemStack3).get(enchantment));
 
-            if (itemStack2.isOf(itemStack3.getItem())) {
-                map.put(enchantment, combineSame(valueOnItem, valueOnItem2, enchantment.getMaxLevel() + GoldToolsPlusConfig.getBoostedList(itemStack).getLevelBoost()));
-            } else {
-                int levelBoost = GoldToolsPlusConfig.getBoostedList(itemStack).getLevelBoost();
-                map.put(enchantment, combineWithBook(valueOnItem, valueOnItem2, enchantment.getMaxLevel() + levelBoost, levelBoost));
-            }
+        if (itemStack2.isOf(itemStack3.getItem())) {
+            map.put(enchantment, combineSame(valueOnItem, valueOnItem2, enchantment.getMaxLevel() + EnchantmentBoostFunctions.fetchBoostAmount(itemStack, enchantment)));
+        } else {
+            int levelBoost = EnchantmentBoostFunctions.fetchBoostAmount(itemStack, enchantment);
+            map.put(enchantment, combineWithBook(valueOnItem, valueOnItem2, enchantment.getMaxLevel() + levelBoost, levelBoost));
         }
     }
 }

@@ -1,6 +1,7 @@
 package mods.SufficientlyPositive.GoldToolsPlus.mixins.enchantments;
 
 import mods.SufficientlyPositive.GoldToolsPlus.GoldToolsPlusConfig;
+import mods.SufficientlyPositive.GoldToolsPlus.functions.EnchantmentBoostFunctions;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.ItemStack;
 import net.minecraft.loot.function.EnchantRandomlyLootFunction;
@@ -19,9 +20,6 @@ public abstract class EnchantRandomlyLootFunctionMixin {
                     )
     )
     private static int improveRandomEnchants(int i, ItemStack stack, Enchantment enchantment, Random random) {
-        if(GoldToolsPlusConfig.enchantmentBoostable(enchantment)) {
-            return i + GoldToolsPlusConfig.getBoostedList(stack).getLevelBoost();
-        }
-        return i;
+        return i + EnchantmentBoostFunctions.fetchBoostAmount(stack, enchantment);
     }
 }

@@ -1,6 +1,7 @@
 package mods.SufficientlyPositive.GoldToolsPlus.mixins.enchantments;
 
 import mods.SufficientlyPositive.GoldToolsPlus.GoldToolsPlusConfig;
+import mods.SufficientlyPositive.GoldToolsPlus.functions.EnchantmentBoostFunctions;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.inventory.Inventory;
@@ -22,17 +23,11 @@ public abstract class SmithingRecipeMixin {
             locals = LocalCapture.CAPTURE_FAILSOFT
     )
     private void boostOnSmithing(Inventory inventory, CallbackInfoReturnable<ItemStack> cir, ItemStack itemStack) {
-        if(GoldToolsPlusConfig.getBoostedList(itemStack) == GoldToolsPlusConfig.venerableGoldItems) {
-            int boostAmount = GoldToolsPlusConfig.getBoostedList(itemStack).getLevelBoost() - GoldToolsPlusConfig.getBoostedList(inventory.getStack(0)).getLevelBoost();
             Map<Enchantment, Integer> enchantments = EnchantmentHelper.get(itemStack);
 
-            for(Map.Entry<Enchantment, Integer> enchantment : enchantments.entrySet()) {
-                if (GoldToolsPlusConfig.enchantmentBoostable(enchantment.getKey())) {
-                    enchantments.put(enchantment.getKey(), enchantment.getValue() + boostAmount);
-                }
-            }
+            ItemStack stackPrev = inventory.getStack(0);
+            enchantments.replaceAll((k, v) -> v + EnchantmentBoostFunctions.fetchBoostAmount(itemStack, k) - EnchantmentBoostFunctions.fetchBoostAmount(stackPrev, k));
 
             EnchantmentHelper.set(enchantments, itemStack);
-        }
     }
 }

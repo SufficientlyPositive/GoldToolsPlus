@@ -3,10 +3,7 @@ package mods.SufficientlyPositive.GoldToolsPlus;
 import mods.SufficientlyPositive.GoldToolsPlus.functions.GoldToolsPlusHelperFunctions;
 import mods.SufficientlyPositive.GoldToolsPlus.game.loottables.LootTablePools;
 import mods.SufficientlyPositive.GoldToolsPlus.game.loottables.LootTableConstants;
-import mods.SufficientlyPositive.GoldToolsPlus.init.ItemsInit;
-import mods.SufficientlyPositive.GoldToolsPlus.init.ScreenHandlerInit;
-import mods.SufficientlyPositive.GoldToolsPlus.init.StructureInit;
-import mods.SufficientlyPositive.GoldToolsPlus.init.RecipeInit;
+import mods.SufficientlyPositive.GoldToolsPlus.init.*;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
@@ -39,12 +36,14 @@ import org.apache.logging.log4j.Logger;
 // Refactor sub-packages so they make sense [x]
 // Refactor lootpools so they make more sense [x]
 // Refactor various helper functions into some form of helper function class (log and newID should not be here) [x]
-
-// Refactor EnchantmentBoost so 1 function can be used to decide how to boost a specific enchantment based on an ItemStack, Enchantment and level [ ]
+// Refactor EnchantmentBoost so 1 function can be used to decide how to boost a specific enchantment based on an ItemStack, Enchantment and level [x]
 //     v
 // actually refactor the whole thing, so that there is a masterlist map <Item, int> that is constructed from the EnchantmentBoost objects
 // probably initialise the map in EnchantmentBoostInit or something and refer to it from there, recall map.get returns null, so use
 // getOrDefault(Item, 0) when finding how much to boost an enchantment on an item.
+
+
+
 // Refactor everything to use "newID" instead of "new Identifier" [ ]
 
 // Add some form of config file [ ]
@@ -52,9 +51,12 @@ import org.apache.logging.log4j.Logger;
 // -> Throw errors if items listed are not registered/there [ ]
 // -> Add some checking for 0 or negative enchantment levels just in case [ ]
 
+// EnchantCommand Error spews incorrectly (e.g. enchant protection 7 on chestplate throws "6 > 4 so no enchant sry"
+// fix [ ]
+
 // Decide whether to name to white_gold instead of venerable_gold [ ]
 
-// Make piglins not agro at venerable gold armour
+// Make piglins not agro at venerable gold armour [ ]
 
 // Somehow boost gold mining material to Stone level [ ]
 
@@ -99,6 +101,7 @@ public class GoldToolsPlus implements ModInitializer {
         StructureInit.init();
         RecipeInit.init();
         ScreenHandlerInit.init();
+        EnchantmentBoostInit.init();
 
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, table, setter) -> {
 

@@ -5,7 +5,6 @@ import mods.SufficientlyPositive.GoldToolsPlus.init.ItemsInit;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 
 public class GoldToolsPlusConfig {
@@ -17,8 +16,6 @@ public class GoldToolsPlusConfig {
             Enchantments.VANISHING_CURSE,
             Enchantments.AQUA_AFFINITY
     };
-
-    private static final EnchantmentBoost empty = new EnchantmentBoost(0, new Item[]{});
 
     public static final EnchantmentBoost goldItems = new EnchantmentBoost(
             1,
@@ -49,23 +46,5 @@ public class GoldToolsPlusConfig {
             }
     );
 
-    private static final EnchantmentBoost[] boostList = new EnchantmentBoost[]{goldItems, venerableGoldItems};
-
-    public static EnchantmentBoost getBoostedList(ItemStack itemStack) {
-        for(EnchantmentBoost list : boostList) {
-            if (list.inBoostedItemList(itemStack)) {
-                return list;
-            }
-        }
-        return empty;
-    }
-
-    public static boolean enchantmentBoostable(Enchantment enchantment) {
-        for(Enchantment enchantment1 : enchantmentsNotToBoost) {
-            if(enchantment == enchantment1) {
-                return false;
-            }
-        }
-        return true;
-    }
+    public static final EnchantmentBoost[] boostList = new EnchantmentBoost[]{goldItems, venerableGoldItems};
 }

@@ -1,6 +1,7 @@
 package mods.SufficientlyPositive.GoldToolsPlus.mixins.enchantments;
 
 import mods.SufficientlyPositive.GoldToolsPlus.GoldToolsPlusConfig;
+import mods.SufficientlyPositive.GoldToolsPlus.functions.EnchantmentBoostFunctions;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -20,15 +21,13 @@ public abstract class EnchantCommandMixin {
             at = @At("HEAD")
     )
     private static int overrideEnchantMax(int level, ServerCommandSource source, Collection<? extends Entity> targets, Enchantment enchantment, int level1) {
-        if (GoldToolsPlusConfig.enchantmentBoostable(enchantment)) {
-            for (Entity entity : targets) {
-                if (entity instanceof LivingEntity livingEntity) {
-                    ItemStack itemStack = livingEntity.getMainHandStack();
-                    return level1 - GoldToolsPlusConfig.getBoostedList(itemStack).getLevelBoost();
-                }
+        for (Entity entity : targets) {
+            if (entity instanceof LivingEntity livingEntity) {
+                ItemStack itemStack = livingEntity.getMainHandStack();
+                return level1 - EnchantmentBoostFunctions.fetchBoostAmount(itemStack, enchantment);
             }
         }
-        return level;
+        return level1;
     }
 
     @ModifyVariable(method = "execute",
@@ -39,12 +38,10 @@ public abstract class EnchantCommandMixin {
             argsOnly = true
     )
     private static int part2(int level, ServerCommandSource source, Collection<? extends Entity> targets, Enchantment enchantment, int level1) {
-        if (GoldToolsPlusConfig.enchantmentBoostable(enchantment)) {
-            for (Entity entity : targets) {
-                if (entity instanceof LivingEntity livingEntity) {
-                    ItemStack itemStack = livingEntity.getMainHandStack();
-                    return level1 + GoldToolsPlusConfig.getBoostedList(itemStack).getLevelBoost();
-                }
+        for (Entity entity : targets) {
+            if (entity instanceof LivingEntity livingEntity) {
+                ItemStack itemStack = livingEntity.getMainHandStack();
+                return level1 + EnchantmentBoostFunctions.fetchBoostAmount(itemStack, enchantment);
             }
         }
         return level1;

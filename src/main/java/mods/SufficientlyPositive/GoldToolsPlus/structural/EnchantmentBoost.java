@@ -1,5 +1,6 @@
 package mods.SufficientlyPositive.GoldToolsPlus.structural;
 
+import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -24,5 +25,9 @@ public class EnchantmentBoost {
 
     public int getLevelBoost() {
         return this.levelBoost;
+    }
+
+    public Item[] getBoostedItems() {
+        return this.boostedItems;
     }
 }

@@ -2,6 +2,7 @@ package mods.SufficientlyPositive.GoldToolsPlus.mixins.enchantments;
 
 import com.google.common.collect.Lists;
 import mods.SufficientlyPositive.GoldToolsPlus.GoldToolsPlusConfig;
+import mods.SufficientlyPositive.GoldToolsPlus.functions.EnchantmentBoostFunctions;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
 import net.minecraft.item.ItemStack;
@@ -24,11 +25,7 @@ public abstract class EnchantmentHelperMixin {
     private static void fixList(Random random, ItemStack stack, int level, boolean treasureAllowed, CallbackInfoReturnable<List<EnchantmentLevelEntry>> cir, List<EnchantmentLevelEntry> list) {
         List<EnchantmentLevelEntry> newItems = Lists.newArrayList();
         for (EnchantmentLevelEntry ench : list) {
-            if (GoldToolsPlusConfig.enchantmentBoostable(ench.enchantment)) {
-                newItems.add(new EnchantmentLevelEntry(ench.enchantment, ench.level + GoldToolsPlusConfig.getBoostedList(stack).getLevelBoost()));
-            } else {
-                newItems.add(new EnchantmentLevelEntry(ench.enchantment, ench.level));
-            }
+            newItems.add(new EnchantmentLevelEntry(ench.enchantment, ench.level + EnchantmentBoostFunctions.fetchBoostAmount(stack, ench.enchantment)));
         }
         list.clear();
         for (EnchantmentLevelEntry ench : newItems) {
