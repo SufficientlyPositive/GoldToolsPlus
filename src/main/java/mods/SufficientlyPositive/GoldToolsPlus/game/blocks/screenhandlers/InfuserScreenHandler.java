@@ -10,14 +10,20 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.RecipeManager;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 
 public class InfuserScreenHandler extends ScreenHandler {
@@ -68,13 +74,17 @@ public class InfuserScreenHandler extends ScreenHandler {
     }
 
     public ItemStack transferSlot(PlayerEntity player, int index) {
+//        if(!slotCheck.initialised) {
+//            slotCheck.init(player.world);
+//        }
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot.hasStack()) {
             ItemStack itemStack2 = slot.getStack();
             itemStack = itemStack2.copy();
+            // index 0 is the "output" crafting slot
             if (index == 0) {
-                // does nothing by default (onCraft does nothing)
+                // onCraft does nothing by default
                 this.context.run((world, pos) -> itemStack2.getItem().onCraft(itemStack2, world, player));
                 if (!this.insertItem(itemStack2, 6, 42, true)) {
                     return ItemStack.EMPTY;
@@ -85,6 +95,7 @@ public class InfuserScreenHandler extends ScreenHandler {
 
                 // shift clicking into infuser
             } else if (index >= 6 && index < 42) {
+
                 if (!this.insertItem(itemStack2, 1, 6, false)) {
                     if (index < 33) {
                         if (!this.insertItem(itemStack2, 33, 42, false)) {
@@ -152,4 +163,55 @@ public class InfuserScreenHandler extends ScreenHandler {
     public boolean canInsertIntoSlot(ItemStack stack, Slot slot) {
         return slot.inventory != this.result && super.canInsertIntoSlot(stack, slot);
     }
+
+
+    // for shift-clicking to correct slot only - put on hold for now
+//    public static class slotCheck {
+//
+//        private static final ArrayList<HashSet<ItemStack>> validItemSets;
+//        private static boolean initialised;
+//
+//        static {
+//            initialised = false;
+//            validItemSets = new ArrayList<>() {};
+//        }
+//
+//        // index 0 <= x <= 4
+//        private static boolean checkSlot(int index, ItemStack itemStack) {
+//            HashSet<ItemStack> set = validItemSets.get(index - 1);
+//            return set.contains(itemStack);
+//        }
+//
+//        // maybe possible that this results in weird behaviour across multiple servers or some shit idk
+//        // if having issues, possible to simply get initialised set to false everytime client exits a world
+//        private static void init(World world) {
+//
+//            // add 5 sets, 1 for each slot
+//            for(int i = 0; i < 5; i++) {
+//                validItemSets.add(new HashSet<>() {});
+//            }
+//
+//            List<InfuserRecipe> recipes = world.getRecipeManager().listAllOfType(RecipeInit.INFUSER_RECIPE_TYPE);
+//
+//            for(InfuserRecipe recipe : recipes) {
+//                for(ItemStack stack : recipe.getInput1().getMatchingStacks()) {
+//                    validItemSets.get(0).add(stack);
+//                }
+//                for(ItemStack stack : recipe.getInput2().getMatchingStacks()) {
+//                    validItemSets.get(1).add(stack);
+//                }
+//                for(ItemStack stack : recipe.getInput3().getMatchingStacks()) {
+//                    validItemSets.get(2).add(stack);
+//                }
+//                for(ItemStack stack : recipe.getInput4().getMatchingStacks()) {
+//                    validItemSets.get(3).add(stack);
+//                }
+//                for(ItemStack stack : recipe.getInput5().getMatchingStacks()) {
+//                    validItemSets.get(4).add(stack);
+//                }
+//            }
+//
+//            initialised = true;
+//        }
+//    }
 }
