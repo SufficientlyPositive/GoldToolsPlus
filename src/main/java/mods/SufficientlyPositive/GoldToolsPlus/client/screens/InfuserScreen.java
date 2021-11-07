@@ -30,7 +30,22 @@ public class InfuserScreen extends HandledScreen<ScreenHandler> {
         RenderSystem.setShaderTexture(0, TEXTURE);
         int x = (width - backgroundWidth) / 2;
         int y = (height - backgroundHeight) / 2;
-        drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+        this.drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight);
+        if(this.handler.getSlot(3).hasStack()) {
+            this.drawTexture(matrices, x + 46, y + 42, 177, 1, 29, 9);
+        }
+        if(this.handler.getSlot(4).hasStack()) {
+            this.drawTexture(matrices, x + 101, y + 42, 177, 11, 29, 9);
+        }
+        if(this.handler.getSlot(1).hasStack()) {
+            this.drawTexture(matrices, x + 55, y + 30, 177, 21, 9, 13);
+        }
+        if(this.handler.getSlot(2).hasStack()) {
+            this.drawTexture(matrices, x + 114, y + 31, 187, 21, 7, 13);
+        }
+        if(this.handler.getSlot(5).hasStack()) {
+            this.drawTexture(matrices, x + 84, y + 55, 195, 21, 8, 5);
+        }
     }
 
     @Override

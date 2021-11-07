@@ -105,23 +105,19 @@ public class InfuserScreenHandler extends ScreenHandler {
                 int startSlot = 1;
                 int endSlot = 2;
                 if(slotChecking.checkSlot(1, itemStack2)) {
-                    GoldToolsPlusHelperFunctions.log(Level.INFO, "shift click into 1/2");
                     if(slotChecking.checkSlot(2, itemStack2)) {
                         endSlot++;
                     }
                 } else if(slotChecking.checkSlot(3, itemStack2)) {
-                    GoldToolsPlusHelperFunctions.log(Level.INFO, "shift click into 3/4");
                     startSlot = 3;
                     endSlot = 4;
                     if(slotChecking.checkSlot(4, itemStack2)) {
                         endSlot++;
                     }
                 } else if(slotChecking.checkSlot(5, itemStack2)){
-                    GoldToolsPlusHelperFunctions.log(Level.INFO, "shift click into 5");
                     startSlot = 5;
                     endSlot = 6;
                 } else {
-                    GoldToolsPlusHelperFunctions.log(Level.INFO, "fuck your shift clicking");
                     endSlot = 1;
                 }
 

@@ -46,6 +46,13 @@ import org.apache.logging.log4j.Logger;
 // Refactor everything to use "newID" instead of "new Identifier" [x]
 // Make piglins not agro at white gold armour - No, instead piglins assume you have stolen the white gold and attack you and attack
 // Somehow boost gold mining material to Stone level [x]
+// Edit infuser screen [x]
+// -> Reduce darkness of icon shapes to smithing table levels [x]
+// -> Make sure shift-clicking an item only works if it would go in the correct slot [x]
+// -> Check if possible to animate [x]
+//    - possible [x]
+//      - change the screen whenever a correct recipe item is inserted into a specific slot [x]
+
 
 
 // Add some form of config file [ ]
@@ -64,14 +71,6 @@ import org.apache.logging.log4j.Logger;
 //    - keep gilded blackstone in the chest loot [ ]
 // -> If not automatic, make the room spawn wither skeletons and zombified piglins [ ]
 // -> Try to make frequency of spawning ~ 2 in 3 nether fortresses [ ]
-
-// Edit infuser screen [ ]
-// -> Reduce darkness of icon shapes to smithing table levels [x]
-// -> Make sure shift-clicking an item only works if it would go in the correct slot [x]
-// -> Check if possible to animate [ ]
-//    - possible [x]
-//      - change the screen whenever a correct recipe item is inserted into a specific slot [ ]
-
 
 // Finally:
 // Make sure FabricMod.json and everything is correct, should be V1.0 [ ]
