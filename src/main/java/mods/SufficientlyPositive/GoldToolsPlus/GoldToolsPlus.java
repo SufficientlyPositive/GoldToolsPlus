@@ -52,6 +52,9 @@ import org.apache.logging.log4j.Logger;
 // -> Check if possible to animate [x]
 //    - possible [x]
 //      - change the screen whenever a correct recipe item is inserted into a specific slot [x]
+// EnchantCommand Error spews incorrectly (e.g. enchant protection 7 on chestplate throws "6 > 4 so no enchant sry"
+// fix [x]
+
 
 
 
@@ -59,9 +62,6 @@ import org.apache.logging.log4j.Logger;
 // -> Allow config file to take json objects matching EnchantmentBoost [ ]
 // -> Throw errors if items listed are not registered with the minecraft registries [ ]
 // -> Add some checking for 0 or negative enchantment levels just in case [ ]
-
-// EnchantCommand Error spews incorrectly (e.g. enchant protection 7 on chestplate throws "6 > 4 so no enchant sry"
-// fix [ ]
 
 // Make the infuser structure part of the nether fortress instead [ ]
 // Probabaly make them part of bastion instead, seems easier [ ]
