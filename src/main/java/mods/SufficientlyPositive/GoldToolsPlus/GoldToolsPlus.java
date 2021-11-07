@@ -67,7 +67,7 @@ import org.apache.logging.log4j.Logger;
 
 // Edit infuser screen [ ]
 // -> Reduce darkness of icon shapes to smithing table levels [x]
-// -> Make sure shift-clicking an item only works if it would go in the correct slot [x] - in retrospect, unnecessary and doesn't fit the vanilla style too well
+// -> Make sure shift-clicking an item only works if it would go in the correct slot [x]
 // -> Check if possible to animate [ ]
 //    - possible [x]
 //      - change the screen whenever a correct recipe item is inserted into a specific slot [ ]

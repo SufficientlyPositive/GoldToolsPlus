@@ -1,5 +1,6 @@
 package mods.SufficientlyPositive.GoldToolsPlus.game.blocks.screenhandlers;
 
+import mods.SufficientlyPositive.GoldToolsPlus.functions.GoldToolsPlusHelperFunctions;
 import mods.SufficientlyPositive.GoldToolsPlus.game.recipes.recipes.InfuserRecipe;
 import mods.SufficientlyPositive.GoldToolsPlus.game.slots.InfusingResultSlot;
 import mods.SufficientlyPositive.GoldToolsPlus.init.ItemsInit;
@@ -10,16 +11,15 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.inventory.CraftingResultInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.packet.s2c.play.ScreenHandlerSlotUpdateS2CPacket;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.recipe.RecipeManager;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.world.World;
+import org.apache.logging.log4j.Level;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -27,6 +27,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class InfuserScreenHandler extends ScreenHandler {
+
+    private final slotCheck slotChecking;
+
+    private final List<InfuserRecipe> recipes;
 
     private final CraftingInventory input;
     private final CraftingResultInventory result;
@@ -39,6 +43,11 @@ public class InfuserScreenHandler extends ScreenHandler {
 
     public InfuserScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
         super(ScreenHandlerInit.INFUSER_SCREEN_HANDLER, syncId);
+        World world = playerInventory.player.world;
+
+        this.recipes = world.getRecipeManager().listAllOfType(RecipeInit.INFUSER_RECIPE_TYPE);
+        this.slotChecking = new slotCheck(this);
+
         this.input = new CraftingInventory(this, 5 ,1);
         this.result = new CraftingResultInventory();
         this.context = context;
@@ -73,10 +82,8 @@ public class InfuserScreenHandler extends ScreenHandler {
         return canUse(this.context, player, ItemsInit.INFUSER_BLOCK);
     }
 
+    // Assumes when shift-clicking, that slots 1&2, 3&4 will be able to have the same items in.
     public ItemStack transferSlot(PlayerEntity player, int index) {
-//        if(!slotCheck.initialised) {
-//            slotCheck.init(player.world);
-//        }
         ItemStack itemStack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot.hasStack()) {
@@ -90,13 +97,35 @@ public class InfuserScreenHandler extends ScreenHandler {
                     return ItemStack.EMPTY;
                 }
 
-
                 slot.onQuickTransfer(itemStack2, itemStack);
 
                 // shift clicking into infuser
             } else if (index >= 6 && index < 42) {
 
-                if (!this.insertItem(itemStack2, 1, 6, false)) {
+                int startSlot = 1;
+                int endSlot = 2;
+                if(slotChecking.checkSlot(1, itemStack2)) {
+                    GoldToolsPlusHelperFunctions.log(Level.INFO, "shift click into 1/2");
+                    if(slotChecking.checkSlot(2, itemStack2)) {
+                        endSlot++;
+                    }
+                } else if(slotChecking.checkSlot(3, itemStack2)) {
+                    GoldToolsPlusHelperFunctions.log(Level.INFO, "shift click into 3/4");
+                    startSlot = 3;
+                    endSlot = 4;
+                    if(slotChecking.checkSlot(4, itemStack2)) {
+                        endSlot++;
+                    }
+                } else if(slotChecking.checkSlot(5, itemStack2)){
+                    GoldToolsPlusHelperFunctions.log(Level.INFO, "shift click into 5");
+                    startSlot = 5;
+                    endSlot = 6;
+                } else {
+                    GoldToolsPlusHelperFunctions.log(Level.INFO, "fuck your shift clicking");
+                    endSlot = 1;
+                }
+
+                if (!this.insertItem(itemStack2, startSlot, endSlot, false)) {
                     if (index < 33) {
                         if (!this.insertItem(itemStack2, 33, 42, false)) {
                             return ItemStack.EMPTY;
@@ -166,52 +195,39 @@ public class InfuserScreenHandler extends ScreenHandler {
 
 
     // for shift-clicking to correct slot only - put on hold for now
-//    public static class slotCheck {
-//
-//        private static final ArrayList<HashSet<ItemStack>> validItemSets;
-//        private static boolean initialised;
-//
-//        static {
-//            initialised = false;
-//            validItemSets = new ArrayList<>() {};
-//        }
-//
-//        // index 0 <= x <= 4
-//        private static boolean checkSlot(int index, ItemStack itemStack) {
-//            HashSet<ItemStack> set = validItemSets.get(index - 1);
-//            return set.contains(itemStack);
-//        }
-//
-//        // maybe possible that this results in weird behaviour across multiple servers or some shit idk
-//        // if having issues, possible to simply get initialised set to false everytime client exits a world
-//        private static void init(World world) {
-//
-//            // add 5 sets, 1 for each slot
-//            for(int i = 0; i < 5; i++) {
-//                validItemSets.add(new HashSet<>() {});
-//            }
-//
-//            List<InfuserRecipe> recipes = world.getRecipeManager().listAllOfType(RecipeInit.INFUSER_RECIPE_TYPE);
-//
-//            for(InfuserRecipe recipe : recipes) {
-//                for(ItemStack stack : recipe.getInput1().getMatchingStacks()) {
-//                    validItemSets.get(0).add(stack);
-//                }
-//                for(ItemStack stack : recipe.getInput2().getMatchingStacks()) {
-//                    validItemSets.get(1).add(stack);
-//                }
-//                for(ItemStack stack : recipe.getInput3().getMatchingStacks()) {
-//                    validItemSets.get(2).add(stack);
-//                }
-//                for(ItemStack stack : recipe.getInput4().getMatchingStacks()) {
-//                    validItemSets.get(3).add(stack);
-//                }
-//                for(ItemStack stack : recipe.getInput5().getMatchingStacks()) {
-//                    validItemSets.get(4).add(stack);
-//                }
-//            }
-//
-//            initialised = true;
-//        }
-//    }
+    private static class slotCheck {
+
+        private final ArrayList<HashSet<Ingredient>> validItemSets;
+
+        // index 1 <= x <= 5 - expects slot number values
+        private boolean checkSlot(int index, ItemStack itemStack) {
+            HashSet<Ingredient> set = validItemSets.get(index - 1);
+            for(Ingredient ing : set) {
+                if(ing.test(itemStack)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // maybe possible that this results in weird behaviour across multiple servers or some shit idk
+        // if having issues, possible to simply get initialised set to false everytime client exits a world
+        private slotCheck(InfuserScreenHandler screen) {
+
+            validItemSets = new ArrayList<>() {};
+
+            // add 5 sets, 1 for each slot
+            for(int i = 0; i < 5; i++) {
+                validItemSets.add(new HashSet<>() {});
+            }
+
+            for(InfuserRecipe recipe : screen.recipes) {
+                    validItemSets.get(0).add(recipe.getBlockInput1());
+                    validItemSets.get(1).add(recipe.getBlockInput2());
+                    validItemSets.get(2).add(recipe.getIngotInput1());
+                    validItemSets.get(3).add(recipe.getIngotInput2());
+                    validItemSets.get(4).add(recipe.getShardInput());
+            }
+        }
+    }
 }

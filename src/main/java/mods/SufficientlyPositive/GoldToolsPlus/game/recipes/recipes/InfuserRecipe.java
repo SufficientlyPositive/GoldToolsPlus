@@ -12,30 +12,30 @@ import net.minecraft.world.World;
 
 public class InfuserRecipe implements Recipe<CraftingInventory> {
 
-    private final Ingredient input1;
-    private final Ingredient input2;
-    private final Ingredient input3;
-    private final Ingredient input4;
-    private final Ingredient input5;
+    private final Ingredient blockInput1;
+    private final Ingredient blockInput2;
+    private final Ingredient ingotInput1;
+    private final Ingredient ingotInput2;
+    private final Ingredient shardInput;
 
     private final ItemStack output;
 
     private final Identifier id;
 
-    public Ingredient getInput1() {
-        return input1;
+    public Ingredient getBlockInput1() {
+        return blockInput1;
     }
-    public Ingredient getInput2() {
-        return input2;
+    public Ingredient getBlockInput2() {
+        return blockInput2;
     }
-    public Ingredient getInput3() {
-        return input3;
+    public Ingredient getIngotInput1() {
+        return ingotInput1;
     }
-    public Ingredient getInput4() {
-        return input4;
+    public Ingredient getIngotInput2() {
+        return ingotInput2;
     }
-    public Ingredient getInput5() {
-        return input5;
+    public Ingredient getShardInput() {
+        return shardInput;
     }
 
     public InfuserRecipe(Ingredient input1,
@@ -45,11 +45,11 @@ public class InfuserRecipe implements Recipe<CraftingInventory> {
                          Ingredient input5,
                          ItemStack output,
                          Identifier id) {
-        this.input1 = input1;
-        this.input2 = input2;
-        this.input3 = input3;
-        this.input4 = input4;
-        this.input5 = input5;
+        this.blockInput1 = input1;
+        this.blockInput2 = input2;
+        this.ingotInput1 = input3;
+        this.ingotInput2 = input4;
+        this.shardInput = input5;
         this.output = output;
         this.id = id;
     }
@@ -57,11 +57,11 @@ public class InfuserRecipe implements Recipe<CraftingInventory> {
     @Override
     public boolean matches(CraftingInventory inventory, World world) {
         if (inventory.size() < 5) return false;
-        return input1.test(inventory.getStack(0))
-                && input2.test(inventory.getStack(1))
-                && input3.test(inventory.getStack(2))
-                && input4.test(inventory.getStack(3))
-                && input5.test(inventory.getStack(4));
+        return blockInput1.test(inventory.getStack(0))
+                && blockInput2.test(inventory.getStack(1))
+                && ingotInput1.test(inventory.getStack(2))
+                && ingotInput2.test(inventory.getStack(3))
+                && shardInput.test(inventory.getStack(4));
     }
 
     @Override
@@ -101,4 +101,5 @@ public class InfuserRecipe implements Recipe<CraftingInventory> {
     public RecipeType<?> getType() {
         return Type.INSTANCE;
     }
+
 }

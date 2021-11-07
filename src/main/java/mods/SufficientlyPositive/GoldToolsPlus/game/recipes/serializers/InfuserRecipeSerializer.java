@@ -60,11 +60,11 @@ public class InfuserRecipeSerializer implements RecipeSerializer<InfuserRecipe> 
 
     @Override
     public void write(PacketByteBuf buf, InfuserRecipe recipe) {
-        recipe.getInput1().write(buf);
-        recipe.getInput2().write(buf);
-        recipe.getInput3().write(buf);
-        recipe.getInput4().write(buf);
-        recipe.getInput5().write(buf);
+        recipe.getBlockInput1().write(buf);
+        recipe.getBlockInput2().write(buf);
+        recipe.getIngotInput1().write(buf);
+        recipe.getIngotInput2().write(buf);
+        recipe.getShardInput().write(buf);
         buf.writeItemStack(recipe.getOutput());
     }
 }
