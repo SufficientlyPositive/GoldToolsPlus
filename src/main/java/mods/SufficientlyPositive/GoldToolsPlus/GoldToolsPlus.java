@@ -16,64 +16,20 @@ import org.apache.logging.log4j.Logger;
 
 // Pre-release todo list
 
-// Javadoc comment everything [ ]
+// Make piglins not agro at white gold armour [ ]
 
-// Before refactoring, create github repository of the mod [x]
-// Refactor code to follow standard: "_" instead of "-" for word separation [x]
-// Refactor enchantment mixins to use ItemStack.addEnchantment, doesn't actually work - kept as-is [x]
-// Reduce durability to 48 (1.5x gold) [x]
-// Reduce white gold shard droprate to ~1/5th of current [x]
-// Create smithing table recipes for the armour [x]
-// Check if Accessor mixin is needed or if it works fine as-is [x]
-// How to mine the infuser [x]
-// -> decide on tool level [x]
-//    - diamond [x]
-// Fix loot pools generating weirdly enchanted loot? [x]
-// -> Check in EnchantWithLevelsLootFunction [x] - seems not applicable but mixin for compatibility anyways (uses enchantmenthelper mixin) [x]
-// -> Check in SetEnchantmentsLootFunction [x]
-// -> debug using EnchantRandomlyLootFunctionMixin [x]
-// /setblock ~ ~2 ~ minecraft:chest{LootTable:"goldtoolsplus:chests/infuser_chest"}
-// Refactor sub-packages so they make sense [x]
-// Refactor lootpools so they make more sense [x]
-// Refactor various helper functions into some form of helper function class (log and newID should not be here) [x]
-// Refactor EnchantmentBoost so 1 function can be used to decide how to boost a specific enchantment based on an ItemStack, Enchantment and level [x]
-// actually refactor the whole thing, so that there is a masterlist map <Item, int> that is constructed from the EnchantmentBoost objects
-// probably initialise the map in EnchantmentBoostInit or something and refer to it from there, recall map.get returns null, so use
-// getOrDefault(Item, 0) when finding how much to boost an enchantment on an item.
-// Decide whether to name to white_gold instead of white_gold [x]
-// Use white_gold [x]
-// -> Refactor to rename everything [x]
-// Refactor everything to use "newID" instead of "new Identifier" [x]
-// Make piglins not agro at white gold armour - No, instead piglins assume you have stolen the white gold and attack you and attack
-// Somehow boost gold mining material to Stone level [x]
-// Edit infuser screen [x]
-// -> Reduce darkness of icon shapes to smithing table levels [x]
-// -> Make sure shift-clicking an item only works if it would go in the correct slot [x]
-// -> Check if possible to animate [x]
-//    - possible [x]
-//      - change the screen whenever a correct recipe item is inserted into a specific slot [x]
-// EnchantCommand Error spews incorrectly (e.g. enchant protection 7 on chestplate throws "6 > 4 so no enchant sry"
-// fix [x]
+// Pixel art for armour [ ]
+
+// Finally:
+// Make sure FabricMod.json and everything is correct, should be V1.0 [ ]
 
 
-
+// Post Release todo list:
 
 // Add some form of config file [ ]
 // -> Allow config file to take json objects matching EnchantmentBoost [ ]
 // -> Throw errors if items listed are not registered with the minecraft registries [ ]
 // -> Add some checking for 0 or negative enchantment levels just in case [ ]
-
-// Make the infuser structure part of the nether fortress instead [ ]
-// Probabaly make them part of bastion instead, seems easier [ ]
-// -> Check for framework mods to let you add to vanilla structures [x]
-//    - no [x]
-// -> Change loot table of chest to more closely resemble nether fortress loot [ ]
-//    - keep gilded blackstone in the chest loot [ ]
-// -> If not automatic, make the room spawn wither skeletons and zombified piglins [ ]
-// -> Try to make frequency of spawning ~ 2 in 3 nether fortresses [ ]
-
-// Finally:
-// Make sure FabricMod.json and everything is correct, should be V1.0 [ ]
 
 public class GoldToolsPlus implements ModInitializer {
 
@@ -92,9 +48,6 @@ public class GoldToolsPlus implements ModInitializer {
         ItemsInit.init();
         GoldToolsPlusHelperFunctions.log(Level.INFO, "Items registered");
 
-        StructureInit.init();
-        RecipeInit.init();
-        ScreenHandlerInit.init();
         EnchantmentBoostInit.init();
 
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, table, setter) -> {

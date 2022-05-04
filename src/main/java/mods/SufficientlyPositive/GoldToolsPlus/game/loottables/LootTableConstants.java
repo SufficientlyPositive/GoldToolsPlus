@@ -7,6 +7,9 @@ import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.util.Identifier;
 
+/**
+ * Class containing various constants essential to for initialising the mod's loot tables.
+ */
 public class LootTableConstants {
 
         /**

@@ -15,41 +15,55 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
 import net.minecraft.util.registry.Registry;
 
+/**
+ * Registers all items in the mod to Minecraft's item and block registries.
+ */
 public class ItemsInit {
 
+    /**
+     * Shorthand function for registering mod items.
+     * @param path the name of the item when it's referred to inside the registries (e.g. will be goldtoolsplus:path)
+     * @param instance a static instance of the item to refer to, should be contained inside this class also.
+     */
     private static void registerItem(String path, Item instance) {
         Registry.register(Registry.ITEM, GoldToolsPlusHelperFunctions.newID(path), instance);
     }
 
+    /**
+     * Shorthand function for registering mod items.
+     * @param path the name of the block when it's referred to inside the registries (e.g. will be goldtoolsplus:path)
+     * @param instance a static instance of the block to refer to, should be contained inside this class also.
+     */
     private static void registerBlock(String path, Block instance) {
         Registry.register(Registry.BLOCK, GoldToolsPlusHelperFunctions.newID(path), instance);
     }
 
-    // blocks
+    // Static block instances
     public static final Block WHITE_GOLD_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).strength(5, 9).requiresTool());
 
-    // blockitems
+    // Static blockitem instances
     public static final BlockItem WHITE_GOLD_BLOCK_ITEM = new BlockItem(WHITE_GOLD_BLOCK, new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
 
-    // items
+    // Static item instances
     public static final Item WHITE_GOLD_SHARD = new Item(new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
     public static final Item WHITE_GOLD_INGOT = new Item(new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
 
-    // tools
+    // Static tool instances
     public static final ToolItem WHITE_GOLD_SWORD = new SwordItem(WhiteGoldToolMaterial.INSTANCE, 3, -2.4F, new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
     public static final ToolItem WHITE_GOLD_PICKAXE = new CustomPickaxeItem(WhiteGoldToolMaterial.INSTANCE, 1, -2.8F, new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
     public static final ToolItem WHITE_GOLD_AXE = new CustomAxeItem(WhiteGoldToolMaterial.INSTANCE, 6, -3.0F, new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
     public static final ToolItem WHITE_GOLD_SHOVEL = new ShovelItem(WhiteGoldToolMaterial.INSTANCE, 1.5F, -3.0F, new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
     public static final ToolItem WHITE_GOLD_HOE = new CustomHoeItem(WhiteGoldToolMaterial.INSTANCE, 0, -3.0F, new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
 
-    // armour
+    // Static armour instances
     public static final ArmorItem WHITE_GOLD_HELMET = new ArmorItem(WhiteGoldArmourMaterial.INSTANCE, EquipmentSlot.HEAD, new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
     public static final ArmorItem WHITE_GOLD_CHESTPLATE = new ArmorItem(WhiteGoldArmourMaterial.INSTANCE, EquipmentSlot.CHEST, new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
     public static final ArmorItem WHITE_GOLD_LEGGINGS = new ArmorItem(WhiteGoldArmourMaterial.INSTANCE, EquipmentSlot.LEGS, new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
     public static final ArmorItem WHITE_GOLD_BOOTS = new ArmorItem(WhiteGoldArmourMaterial.INSTANCE, EquipmentSlot.FEET, new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
 
-
-
+    /**
+     * Function runs on game startup, registers all items and blocks to minecraft's registries.
+     */
     public static void init() {
         registerBlock("white_gold_block", WHITE_GOLD_BLOCK);
 

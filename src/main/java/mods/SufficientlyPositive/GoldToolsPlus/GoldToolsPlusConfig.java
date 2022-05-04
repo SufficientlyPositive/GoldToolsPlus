@@ -7,8 +7,19 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.stream.Collectors;
+
+/**
+ * Custom config for GoldToolsPlus
+ */
 public class GoldToolsPlusConfig {
 
+    /**
+     * MasterList of enchantments that should not be boosted
+     * should be updated with each update as necessary.
+     */
     public static final Enchantment[] enchantmentsNotToBoost = {
         Enchantments.MENDING,
         Enchantments.SILK_TOUCH,
@@ -17,6 +28,9 @@ public class GoldToolsPlusConfig {
         Enchantments.AQUA_AFFINITY
     };
 
+    /**
+     * EnchantmentBoost object containing levels for the gold tools.
+     */
     public static final EnchantmentBoost goldItems = new EnchantmentBoost(
         1,
         new Item[] {Items.GOLDEN_SWORD,
@@ -31,6 +45,9 @@ public class GoldToolsPlusConfig {
         }
     );
 
+    /**
+     * EnchantmentBoost object containing levels for the white gold tools.
+     */
     public static final EnchantmentBoost whiteGoldItems = new EnchantmentBoost(
         2,
         new Item[] {
@@ -46,5 +63,18 @@ public class GoldToolsPlusConfig {
         }
     );
 
+    /**
+     * Piglin Safe armour:
+     */
+    public static final HashSet<Item> piglinSafeArmour = new HashSet<>(Arrays.stream(new Item[] {
+            ItemsInit.WHITE_GOLD_HELMET,
+            ItemsInit.WHITE_GOLD_CHESTPLATE,
+            ItemsInit.WHITE_GOLD_LEGGINGS,
+            ItemsInit.WHITE_GOLD_BOOTS
+    }).collect(Collectors.toSet()));
+
+    /**
+     * MasterList of EnchantmentBoost objects.
+     */
     public static final EnchantmentBoost[] boostList = new EnchantmentBoost[]{goldItems, whiteGoldItems};
 }

@@ -1,8 +1,6 @@
 package mods.SufficientlyPositive.GoldToolsPlus.mixins.enchantments;
 
-import mods.SufficientlyPositive.GoldToolsPlus.GoldToolsPlusConfig;
 import mods.SufficientlyPositive.GoldToolsPlus.functions.EnchantmentBoostFunctions;
-import mods.SufficientlyPositive.GoldToolsPlus.init.EnchantmentBoostInit;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
@@ -16,25 +14,50 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import java.util.Iterator;
 import java.util.Map;
 
-
-// ANVIL FUNCTIONALITY COMPLETE
-// *celebration ensues*
-
+/**
+ * Mixin for editing the AnvilScreenHandler class to for enchantment boosting functionality.
+ */
 @Mixin(AnvilScreenHandler.class)
 public abstract class AnvilScreenHandlerMixin {
 
-    // when map fails to find a key it returns null, we want an integer for 0 enchant level
+    /**
+     * Handles any null outputs from fetching values out of the integer/enchantment map.
+     * Converts null (e.g. no enchantment value) to -1
+     *
+     * @param i the Integer object returned from whatever the NBT spits out.
+     * @return an int primitive value of the Integer object, -1 if i was null.
+     */
     private int nullHandler(Integer i) {
         return (i == null) ? -1 : i;
     }
 
-    // if you have 2 of the same item, what does combining their enchantments get you?
+    /**
+     * Used when 2 items are to be combined, calculates the final level of the enchantment.
+     * Either level should be the maximum of the two values, or if both are the same, then
+     * the enchantment should increase a single level (unless it would go beyond max).
+     *
+     * @param i enchantment level on item 1.
+     * @param j enchantment level on item 2.
+     * @param max maximum enchantment level that can be reached.
+     * @return the combined enchantment level.
+     */
     private int combineSame(int i, int j, int max) {
         return (i == j && i < max) ?
                 i + 1 : Math.max(i, j);
     }
 
-    // if you are adding a book, how does it combine?
+    /**
+     * Used when an enchantment is added by a book onto an item. Calculates the final level of the
+     * enchantment, considering the tool's material. If enchantment on book + the tool's enchantboost
+     * level is beyond the current item's enchantment, then it gets applied, else the current item's
+     * level stays.
+     *
+     * @param i the enchantment level on the item.
+     * @param j the enchantment level on the book.
+     * @param max the maximum enchantment level to reach.
+     * @param levelBoost the size of the enchantment boost (min 0).
+     * @return the level of the newly combined enchantment.
+     */
     private int combineWithBook(int i, int j, int max, int levelBoost) {
         if(i == j) {
             j++;
@@ -42,9 +65,25 @@ public abstract class AnvilScreenHandlerMixin {
         return (j + levelBoost > i) ? Math.min(j + levelBoost, max) : i;
     }
 
-
-
-    // after the normal map.put inside AnvilScreenHandler, check if the enchantment needs to be buffed
+    /**
+     * After the first map.put() call that places a specific enchantment on the map, overrides the
+     * value in the map with the new boosted (or not) value.
+     * @param ci callback info, required for mixin.
+     * @param itemStack item in the first slot of the anvil
+     * @param i -
+     * @param j -
+     * @param k -
+     * @param itemStack2 item in the output slot of the anvil
+     * @param itemStack3 item in the second slot of the anvil
+     * @param map map of enchantments to place on the output of the anvil.
+     * @param bl -
+     * @param map2 map of enchantments on itemStack3
+     * @param bl2 -
+     * @param bl3 -
+     * @param var12 -
+     * @param enchantment the specific enchantment that was just added to map, that may need to be boosted.
+     * @param u -
+     */
     @Inject(method = "updateResult",
             at = @At(
                     value = "INVOKE_ASSIGN",

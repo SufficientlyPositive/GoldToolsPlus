@@ -15,9 +15,24 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Mixin class that boosts enchantments in the enchantment table.
+ */
 @Mixin(EnchantmentHelper.class)
 public abstract class EnchantmentHelperMixin {
 
+    // probably could add a check if itemstack boost level is 0, to skip all of this idk.
+    /**
+     * After the enchantments have been applied, remove them and re-add them
+     * in their boosted state.
+     *
+     * @param random -
+     * @param stack the item to be enchanted
+     * @param level -
+     * @param treasureAllowed -
+     * @param cir -
+     * @param list the list of enchantments to place on the item.
+     */
     @Inject(method = "generateEnchantments",
             at = @At("TAIL"),
             locals = LocalCapture.CAPTURE_FAILSOFT
@@ -32,6 +47,4 @@ public abstract class EnchantmentHelperMixin {
             list.add(new EnchantmentLevelEntry(ench.enchantment, ench.level));
         }
     }
-
-
 }

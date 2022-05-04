@@ -11,9 +11,20 @@ import org.apache.logging.log4j.Level;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Static class containing containers of items to boost and enchantments not to boost
+ * Initialised at runtime.
+ */
 public class EnchantmentBoostInit {
 
+    /**
+     * Map of items to boost.
+     */
     public static final Map<Item, Integer> boostMap;
+
+    /**
+     * List of enchantments not to boost.
+     */
     public static final Enchantment[] enchantmentsNotToBoostList;
 
     static {
@@ -21,6 +32,10 @@ public class EnchantmentBoostInit {
         enchantmentsNotToBoostList = GoldToolsPlusConfig.enchantmentsNotToBoost;
     }
 
+    /**
+     * Initialisation of boostMap and enchantmentsNotToBoostList at runtime.
+     * Values currently taken from GoldToolsPlusConfig.
+     */
     public static void init() {
         // when changing over to config file, have something that parses a list of EnchantmentBoosts and search through that list instead
         // for now we will use boostList

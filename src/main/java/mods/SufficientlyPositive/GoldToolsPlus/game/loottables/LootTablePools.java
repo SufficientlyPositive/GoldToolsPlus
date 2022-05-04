@@ -11,67 +11,70 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.predicate.item.ItemPredicate;
 
+/**
+ * Class containing the various FabricLootPoolBuilder objects editing loot pools across the nether and end.
+ */
 public class LootTablePools {
 
     /**
-     * The pool that adds white gold shards to the nether gold ore lootpool.
+     * The pool that adds white gold nuggets to the nether gold ore lootpool.
      * Drops are predicated on the pickaxe in use having fortune V or higher.
-     * Distribution of drops: binom(2, 0.02)
+     * Distribution of drops: binom(4, 0.05)
      */
     public static final FabricLootPoolBuilder NETHER_GOLD_ORE_ADDITIONAL;
 
     /**
-     * The pool that adds white gold shards to the piglin lootpool.
-     * Distribution of drops: binom(1, 0.01).
+     * The pool that adds white gold nuggets to the piglin lootpool.
+     * Distribution of drops: binom(1, 0.05).
      * Affected by looting.
      */
     public static final FabricLootPoolBuilder PIGLIN_LOOT_ADDITIONAL;
 
     /**
-     * The pool that adds white gold shards to the piglin brute lootpool.
-     * Distribution of drops: binom(1, 0.75).
+     * The pool that adds white gold nuggets to the piglin brute lootpool.
+     * Distribution of drops: binom(6, 0.75).
      * Affected by looting.
      */
     public static final FabricLootPoolBuilder PIGLIN_BRUTE_LOOT_ADDITIONAL;
 
     /**
      * The pool that adds white gold shards to the ruined portal chest lootpool.
-     * Distribution of slots: binom(2, 0.5).
-     * Distribution of items: binom(1, 0.05).
+     * Distribution of slots: binom(4, 0.5).
+     * Distribution of items: binom(3, 0.05).
      */
     public static final FabricLootPoolBuilder RUINED_PORTAL_SHARDS;
 
     /**
      * The pool that adds white gold shards to the bastion bridge chest lootpool.
-     * Distribution of slots: uniform(0, 2).
-     * Distribution of items: binom(2, 0.2).
+     * Distribution of slots: uniform(0, 4).
+     * Distribution of items: binom(3, 0.2).
      */
     public static final FabricLootPoolBuilder BASTION_BRIDGE_SHARDS;
 
     /**
      * The pool that adds white gold shards to the bastion stable chest lootpool.
-     * Distribution of slots: uniform(0, 1).
-     * Distribution of items: binom(2, 0.2).
+     * Distribution of slots: uniform(0, 3).
+     * Distribution of items: binom(4, 0.2).
      */
     public static final FabricLootPoolBuilder BASTION_STABLE_SHARDS;
 
     /**
      * The pool that adds white gold shards to the bastion other chest lootpool.
-     * Distribution of slots: constant(1).
-     * Distribution of items: binom(2, 0.15).
+     * Distribution of slots: constant(2).
+     * Distribution of items: binom(4, 0.15).
      */
     public static final FabricLootPoolBuilder BASTION_OTHER_SHARDS;
 
     /**
      * The pool that adds white gold shards to the bastion treasure chest lootpool.
-     * Distribution of slots: constant(1).
-     * Distribution of items: binom(3, 0.3).
+     * Distribution of slots: constant(3).
+     * Distribution of items: binom(5, 0.3).
      */
     public static final FabricLootPoolBuilder BASTION_TREASURE_SHARDS;
 
     /**
      * The pool that adds white gold ingots to the bastion treasure chest lootpool.
-     * Distribution of slots: constant(1).
+     * Distribution of slots: uniform(1, 4).
      * Distribution of items: binom(2, 0.2).
      */
     public static final FabricLootPoolBuilder BASTION_TREASURE_INGOTS;
@@ -79,7 +82,7 @@ public class LootTablePools {
     /**
      * The pool that adds white gold ingots to the end city chest lootpool.
      * Distribution of slots: binom(2, 0.1).
-     * Distribution of items: binom(2, 0.7).
+     * Distribution of items: binom(6, 0.7).
      */
     public static final FabricLootPoolBuilder END_CITY_INGOTS;
 
@@ -120,8 +123,8 @@ public class LootTablePools {
 
         PIGLIN_BRUTE_LOOT_ADDITIONAL = LootTableFunctions.createMobItemPool(
                 ConstantLootNumberProvider.create(1.0F),
-                BinomialLootNumberProvider.create(1, 0.50F),
-                ItemsInit.WHITE_GOLD_INGOT
+                BinomialLootNumberProvider.create(6, 0.75F),
+                ItemsInit.WHITE_GOLD_SHARD
         );
 
         RUINED_PORTAL_SHARDS = LootTableFunctions.createItemPool(
@@ -150,8 +153,8 @@ public class LootTablePools {
                 ItemsInit.WHITE_GOLD_SHARD);
 
         BASTION_TREASURE_INGOTS = LootTableFunctions.createItemPool(
-                ConstantLootNumberProvider.create(2.0F),
-                BinomialLootNumberProvider.create(4, 0.25F),
+                UniformLootNumberProvider.create(1, 4),
+                BinomialLootNumberProvider.create(2, 0.2F),
                 ItemsInit.WHITE_GOLD_INGOT);
 
         END_CITY_INGOTS = LootTableFunctions.createItemPool(

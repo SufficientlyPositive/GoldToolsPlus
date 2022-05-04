@@ -10,6 +10,9 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.LootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 
+/**
+ * Class containing helper functions helping with setting new loot pools
+ */
 public class LootTableFunctions {
     /**
      * Used for creating a pool for any specific item.

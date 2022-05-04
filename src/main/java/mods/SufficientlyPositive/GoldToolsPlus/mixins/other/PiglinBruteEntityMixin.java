@@ -10,6 +10,9 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 
+/**
+ * Mixin to change Piglin brute's axes to white gold axes.
+ */
 @Mixin(PiglinBruteEntity.class)
 public abstract class PiglinBruteEntityMixin extends MobEntity {
 
@@ -17,6 +20,11 @@ public abstract class PiglinBruteEntityMixin extends MobEntity {
         super(entityType, world);
     }
 
+    /**
+     * Overrides the existing initEquipment of Piglin Brutes to given them
+     * White gold axes instead of gold axes
+     * @param difficult the local game difficulty.
+     */
     public void initEquipment(LocalDifficulty difficult){
         this.equipStack(EquipmentSlot.MAINHAND, new ItemStack(ItemsInit.WHITE_GOLD_AXE));
     }

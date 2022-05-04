@@ -4,6 +4,9 @@ import mods.SufficientlyPositive.GoldToolsPlus.GoldToolsPlus;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.Level;
 
+/**
+ * Class containing helper functions for more general utility across the mod.
+ */
 public class GoldToolsPlusHelperFunctions {
 
     /**

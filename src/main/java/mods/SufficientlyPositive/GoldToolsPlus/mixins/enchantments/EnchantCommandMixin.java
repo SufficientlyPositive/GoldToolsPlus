@@ -18,6 +18,10 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Collection;
 
+/**
+ * Mixin for editing the enchant command to provide the desired functionality.
+ * Allows for enchanting an item from level:1-maxLevel+boost.
+ */
 @Mixin(EnchantCommand.class)
 public abstract class EnchantCommandMixin {
 
@@ -25,6 +29,16 @@ public abstract class EnchantCommandMixin {
     @Shadow
     private static Dynamic2CommandExceptionType FAILED_LEVEL_EXCEPTION;
 
+    /**
+     * Mixin to modify the enchantment variable level sent to the command to bypass a check later.
+     *
+     * @param level -
+     * @param source -
+     * @param targets the targets of the enchant command.
+     * @param enchantment the enchantment to apply.
+     * @param level1 the level of the enchantment to apply.
+     * @return the new modified enchantment level level1 - boost (of material).
+     */
     @ModifyVariable(method = "execute",
             at = @At("HEAD")
     )
@@ -38,6 +52,16 @@ public abstract class EnchantCommandMixin {
         return level1;
     }
 
+    /**
+     * After the check, modifies the enchantment variable level once again, back to its original levels.
+     *
+     * @param level -
+     * @param source -
+     * @param targets the targets of the enchant command.
+     * @param enchantment the enchantment to apply.
+     * @param level1 the level of the enchantment to apply, boost levels lower than input.
+     * @return the originally inputted enchantment value.
+     */
     @ModifyVariable(method = "execute",
             at = @At(value = "INVOKE",
                     target = "Ljava/util/Collection;iterator()Ljava/util/Iterator;",
@@ -55,6 +79,19 @@ public abstract class EnchantCommandMixin {
         return level1;
     }
 
+    /**
+     * Overrides the failed exception to be boost level friendly. Now prints boosted max level instead of general
+     * max level of enchantment.
+     *
+     * @param instance -
+     * @param a -
+     * @param b -
+     * @param source -
+     * @param targets the targets of the enchantment command.
+     * @param enchantment the enchantment that was unable to apply.
+     * @param level the input level given.
+     * @return the corrected FAILED_LEVEL_EXCEPTION.
+     */
     @Redirect(method = "execute",
             at = @At(value = "INVOKE",
                     target = "com/mojang/brigadier/exceptions/Dynamic2CommandExceptionType.create (Ljava/lang/Object;Ljava/lang/Object;)Lcom/mojang/brigadier/exceptions/CommandSyntaxException;"

@@ -15,9 +15,22 @@ import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 import java.util.Map;
 
+/**
+ * Mixin class to apply any boosting in smithing table recipes (e.g. gold -> white_gold tools)
+ * Should apply the difference between the two tools boosting levels.
+ */
 @Mixin(SmithingRecipe.class)
 public abstract class SmithingRecipeMixin {
 
+    /**
+     * Any result of smithing table crafting that changes tool material will also
+     * upgrade the enchantment levels to account for changing levels in enchantmentboost
+     * properties.
+     *
+     * @param inventory the inventory of the smithing table
+     * @param cir -
+     * @param itemStack the item to be crafted into another.
+     */
     @Inject(method = "craft",
             at = @At(value = "TAIL"),
             locals = LocalCapture.CAPTURE_FAILSOFT
