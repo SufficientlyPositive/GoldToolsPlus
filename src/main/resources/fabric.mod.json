@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "id": "goldtoolsplus",
-  "version": "${version}",
+  "version": "0.1.0",
 
   "name": "Gold Tools Plus",
   "description": "GoldTools+ or Gold Tools Plus is a mod based around altering the gold tier of equipment in minecraft with the goal of making it have a niche use.",
   "authors": [
-    "SufficientlyPositive a.k.a ASmallFish"
+    "SufficientlyPositive"
   ],
 
   "license": "CC0 1.0 Universal",
@@ -15,9 +15,6 @@
   "entrypoints": {
     "main": [
       "mods.SufficientlyPositive.GoldToolsPlus.GoldToolsPlus"
-    ],
-    "client": [
-      "mods.SufficientlyPositive.GoldToolsPlus.client.GoldToolsPlusClient"
     ]
   },
   "mixins": [
@@ -26,9 +23,9 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.11.3",
+    "fabricloader": ">=0.14.4",
     "fabric": "*",
-    "minecraft": "1.17.x",
-    "java": ">=16"
+    "minecraft": "1.18.x",
+    "java": ">=17"
   }
 }

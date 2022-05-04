@@ -1,20 +1,16 @@
 {
-  "type" : "goldtoolsplus:infuser_recipe",
-  "input1" : {
-    "item" : "minecraft:gilded_blackstone"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "iii",
+    "iii",
+    "iii"
+  ],
+  "key": {
+    "i": {
+      "item": "goldtoolsplus:white_gold_shard"
+    }
   },
-  "input2" : {
-    "item" : "minecraft:gilded_blackstone"
-  },
-  "input3" : {
-    "item" : "minecraft:gold_ingot"
-  },
-  "input4" : {
-    "item" : "minecraft:gold_ingot"
-  },
-  "input5" : {
-    "item" : "goldtoolsplus:white_gold_shard"
-  },
-  "outputItem" : "goldtoolsplus:white_gold_ingot",
-  "outputAmount": 1
+  "result": {
+    "item": "goldtoolsplus:white_gold_ingot"
+  }
 }

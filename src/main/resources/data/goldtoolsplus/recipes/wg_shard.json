@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "goldtoolsplus:white_gold_ingot"
+    }
+  ],
+  "result": {
+    "item": "goldtoolsplus:white_gold_shard",
+    "count": 9
+  }
+}

@@ -1,7 +1,6 @@
 package mods.SufficientlyPositive.GoldToolsPlus.init;
 
 import mods.SufficientlyPositive.GoldToolsPlus.functions.GoldToolsPlusHelperFunctions;
-import mods.SufficientlyPositive.GoldToolsPlus.game.blocks.blocks.InfuserBlock;
 import mods.SufficientlyPositive.GoldToolsPlus.game.materials.WhiteGoldArmourMaterial;
 import mods.SufficientlyPositive.GoldToolsPlus.game.tools.CustomAxeItem;
 import mods.SufficientlyPositive.GoldToolsPlus.game.tools.CustomHoeItem;
@@ -14,7 +13,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.*;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class ItemsInit {
@@ -27,16 +25,11 @@ public class ItemsInit {
         Registry.register(Registry.BLOCK, GoldToolsPlusHelperFunctions.newID(path), instance);
     }
 
-    // custom identifiers
-    public static final Identifier INFUSER_IDENTIFIER = GoldToolsPlusHelperFunctions.newID("infuser");
-
     // blocks
     public static final Block WHITE_GOLD_BLOCK = new Block(FabricBlockSettings.of(Material.METAL).strength(5, 9).requiresTool());
-    public static final Block INFUSER_BLOCK = new InfuserBlock(FabricBlockSettings.of(Material.METAL).strength(5, 100).requiresTool());
 
     // blockitems
     public static final BlockItem WHITE_GOLD_BLOCK_ITEM = new BlockItem(WHITE_GOLD_BLOCK, new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
-    public static final BlockItem INFUSER_BLOCK_ITEM = new BlockItem(INFUSER_BLOCK, new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP));
 
     // items
     public static final Item WHITE_GOLD_SHARD = new Item(new FabricItemSettings().group(GoldToolsPlus.GTP_ITEM_GROUP).fireproof());
@@ -59,13 +52,11 @@ public class ItemsInit {
 
     public static void init() {
         registerBlock("white_gold_block", WHITE_GOLD_BLOCK);
-        Registry.register(Registry.BLOCK, INFUSER_IDENTIFIER, INFUSER_BLOCK);
 
         // register all generic items
         registerItem("white_gold_ingot", WHITE_GOLD_INGOT);
         registerItem("white_gold_shard", WHITE_GOLD_SHARD);
         registerItem("white_gold_block", WHITE_GOLD_BLOCK_ITEM);
-        registerItem("infuser", INFUSER_BLOCK_ITEM);
 
         registerItem("white_gold_sword", WHITE_GOLD_SWORD);
         registerItem("white_gold_shovel", WHITE_GOLD_SHOVEL);

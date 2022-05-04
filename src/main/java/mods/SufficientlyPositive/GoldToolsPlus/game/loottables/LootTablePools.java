@@ -105,7 +105,7 @@ public class LootTablePools {
 
     static {
         NETHER_GOLD_ORE_ADDITIONAL = FabricLootPoolBuilder.builder()
-                .rolls(BinomialLootNumberProvider.create(2, 0.02F))
+                .rolls(BinomialLootNumberProvider.create(4, 0.05F))
                 .with(ItemEntry.builder(ItemsInit.WHITE_GOLD_SHARD))
                 .conditionally(
                         MatchToolLootCondition.builder(
@@ -114,44 +114,44 @@ public class LootTablePools {
 
         PIGLIN_LOOT_ADDITIONAL = LootTableFunctions.createMobItemPool(
                 ConstantLootNumberProvider.create(1.0F),
-                BinomialLootNumberProvider.create(1, 0.01F),
+                BinomialLootNumberProvider.create(1, 0.05F),
                 ItemsInit.WHITE_GOLD_SHARD
         );
 
         PIGLIN_BRUTE_LOOT_ADDITIONAL = LootTableFunctions.createMobItemPool(
                 ConstantLootNumberProvider.create(1.0F),
-                BinomialLootNumberProvider.create(1, 0.75F),
-                ItemsInit.WHITE_GOLD_SHARD
+                BinomialLootNumberProvider.create(1, 0.50F),
+                ItemsInit.WHITE_GOLD_INGOT
         );
 
         RUINED_PORTAL_SHARDS = LootTableFunctions.createItemPool(
-                BinomialLootNumberProvider.create(2, 0.5F),
-                BinomialLootNumberProvider.create(1, 0.05F),
+                BinomialLootNumberProvider.create(4, 0.5F),
+                BinomialLootNumberProvider.create(3, 0.05F),
                 ItemsInit.WHITE_GOLD_SHARD);
 
         BASTION_BRIDGE_SHARDS = LootTableFunctions.createItemPool(
-                UniformLootNumberProvider.create(0, 2),
-                BinomialLootNumberProvider.create(2, 0.2F),
+                UniformLootNumberProvider.create(0, 4),
+                BinomialLootNumberProvider.create(3, 0.2F),
                 ItemsInit.WHITE_GOLD_SHARD);
 
         BASTION_STABLE_SHARDS = LootTableFunctions.createItemPool(
-                UniformLootNumberProvider.create(0, 1),
-                BinomialLootNumberProvider.create(2, 0.2F),
+                UniformLootNumberProvider.create(0, 3),
+                BinomialLootNumberProvider.create(4, 0.2F),
                 ItemsInit.WHITE_GOLD_SHARD);
 
         BASTION_OTHER_SHARDS = LootTableFunctions.createItemPool(
-                ConstantLootNumberProvider.create(1),
-                BinomialLootNumberProvider.create(2, 0.15F),
+                ConstantLootNumberProvider.create(2),
+                BinomialLootNumberProvider.create(4, 0.15F),
                 ItemsInit.WHITE_GOLD_SHARD);
 
         BASTION_TREASURE_SHARDS = LootTableFunctions.createItemPool(
-                ConstantLootNumberProvider.create(1),
-                BinomialLootNumberProvider.create(3, 0.3F),
+                ConstantLootNumberProvider.create(3),
+                BinomialLootNumberProvider.create(5, 0.3F),
                 ItemsInit.WHITE_GOLD_SHARD);
 
         BASTION_TREASURE_INGOTS = LootTableFunctions.createItemPool(
-                ConstantLootNumberProvider.create(1.0F),
-                BinomialLootNumberProvider.create(2, 0.2F),
+                ConstantLootNumberProvider.create(2.0F),
+                BinomialLootNumberProvider.create(4, 0.25F),
                 ItemsInit.WHITE_GOLD_INGOT);
 
         END_CITY_INGOTS = LootTableFunctions.createItemPool(
