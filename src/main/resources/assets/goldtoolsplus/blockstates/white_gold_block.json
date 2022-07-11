@@ -1,5 +1,16 @@
 {
   "variants": {
-    "": { "model":  "goldtoolsplus:block/white_gold_block"}
+    "axis=x": {
+      "model": "goldtoolsplus:block/white_gold_block",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "goldtoolsplus:block/white_gold_block"
+    },
+    "axis=z": {
+      "model": "goldtoolsplus:block/white_gold_block",
+      "x": 90
+    }
   }
 }

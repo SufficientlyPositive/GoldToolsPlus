@@ -16,13 +16,13 @@ import org.apache.logging.log4j.Logger;
 
 // Pre-release todo list
 
-// Make piglins not agro at white gold armour [ ]
-
-// Pixel art for armour [ ]
+// Pixel art for armour pieces [ ]
+// Pixel art for armour on player [ ]
+// Pixel art for White-Gold Block [ ]
+// Make White-Gold block directional [ ]
 
 // Finally:
 // Make sure FabricMod.json and everything is correct, should be V1.0 [ ]
-
 
 // Post Release todo list:
 

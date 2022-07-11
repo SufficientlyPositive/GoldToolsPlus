@@ -20,6 +20,16 @@ import java.util.Iterator;
 @Mixin(PiglinBrain.class)
 public class PiglinBrainMixin {
 
+    /**
+     * Makes piglins recognise white gold armour
+     *
+     * @param entity -
+     * @param cir -
+     * @param iterable -
+     * @param iterator -
+     * @param stack item stack to check
+     * @param item -
+     */
     @Inject(
             method = "wearsGoldArmor(Lnet/minecraft/entity/LivingEntity;)Z",
             at = @At(value = "INVOKE_ASSIGN",
